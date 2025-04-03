@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqx1cagbcytae"]
+
+[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_jd545"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0egn"]
+size = Vector2(66, 291)
+
+[node name="tempDoor" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(28.5, -82)
+scale = Vector2(0.554688, 2.28125)
+texture = ExtResource("1_jd545")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(29, -82.5)
+shape = SubResource("RectangleShape2D_y0egn")
