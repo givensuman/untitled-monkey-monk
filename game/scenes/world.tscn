@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=4 uid="uid://6lvhxowtgj46"]
+
+[ext_resource type="PackedScene" uid="uid://vdh5byns55m2" path="res://game/test_scenes/temp_platform.tscn" id="1_uu6rj"]
+[ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
+[ext_resource type="PackedScene" uid="uid://cgwoelcj7k4p3" path="res://game/scenes/button.tscn" id="3_y08k3"]
+[ext_resource type="PackedScene" uid="uid://cqx1cagbcytae" path="res://game/test_scenes/temp_door.tscn" id="4_nepmf"]
+[ext_resource type="Script" uid="uid://dpumb3b0fo05v" path="res://game/scripts/temp_door.gd" id="5_ifrqp"]
+[ext_resource type="Texture2D" uid="uid://d31ue4kxt5qmf" path="res://art/tutorial_tileset.png" id="6_qur0g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uu6rj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqg12"]
+texture = ExtResource("6_qur0g")
+texture_region_size = Vector2i(32, 64)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 32, -16, 32)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 32, -16, 32)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 32, -16, 32)
+4:2/0 = 0
+4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 32, -16, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(13.3333, -16, 16, -16, 16, 32, 13.3333, 32, 13.3333, -16)
+5:2/0 = 0
+5:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -12.8, -12.8, -12.8, 32, -16, 32)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uu6rj"]
+texture = ExtResource("6_qur0g")
+texture_region_size = Vector2i(64, 32)
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+15:3/0 = 0
+14:3/0 = 0
+13:3/0 = 0
+12:3/0 = 0
+12:2/0 = 0
+12:4/0 = 0
+13:4/0 = 0
+14:4/0 = 0
+14:5/0 = 0
+15:5/0 = 0
+15:4/0 = 0
+13:5/0 = 0
+12:5/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+14:6/0 = 0
+15:6/0 = 0
+15:7/0 = 0
+14:7/0 = 0
+13:7/0 = 0
+12:7/0 = 0
+12:8/0 = 0
+13:8/0 = 0
+14:8/0 = 0
+15:8/0 = 0
+15:9/0 = 0
+14:9/0 = 0
+13:9/0 = 0
+12:9/0 = 0
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20.8, 3.2, 20.8, 3.2, 19.2, 6.4, 12.8, 12.8, -12.8, 12.8, -19.2, 6.4)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20.8, 3.2, 20.8, 3.2, 20.8, 6.4, 14.4, 12.8, 8, 12.8, -12.8, 12.8, -19.2, 6.4)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20.8, 3.2, 20.8, 3.2, 19.2, 6.4, 14.4, 12.8, -12.8, 12.8, -19.2, 6.4)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-20.8, 3.2, 20.8, 3.2, 20.8, 6.4, 14.4, 12.8, -12.8, 12.8, -19.2, 6.4)
+
+[sub_resource type="TileSet" id="TileSet_621cg"]
+tile_size = Vector2i(32, 64)
+physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_uu6rj")
+sources/2 = SubResource("TileSetAtlasSource_eqg12")
+sources/4 = SubResource("TileSetAtlasSource_uu6rj")
+
+[node name="World" type="Node2D"]
+
+[node name="StaticBody2D6" parent="." instance=ExtResource("1_uu6rj")]
+position = Vector2(1184, 408)
+
+[node name="StaticBody2D7" parent="." instance=ExtResource("1_uu6rj")]
+position = Vector2(1568, 312)
+
+[node name="StaticBody2D8" parent="." instance=ExtResource("1_uu6rj")]
+position = Vector2(1184, 232)
+
+[node name="Button" parent="." instance=ExtResource("3_y08k3")]
+position = Vector2(1200, 208)
+
+[node name="tempDoor" parent="." instance=ExtResource("4_nepmf")]
+position = Vector2(1896, 432)
+script = ExtResource("5_ifrqp")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+texture_filter = 3
+scale = Vector2(2, 2)
+tile_map_data = PackedByteArray("AAAAAAQAAgAEAAIAAAABAAQAAgABAAIAAAACAAQAAgADAAIAAAADAAQAAgADAAIAAAAEAAQAAgACAAIAAAAFAAQAAgACAAIAAAAGAAQAAgABAAIAAAAHAAQAAgADAAIAAAAIAAQAAgABAAIAAAAJAAQAAgAEAAIAAAAKAAQAAgACAAIAAAALAAQAAgABAAIAAAAMAAQAAgACAAIAAAANAAQAAgAEAAIAAAAOAAQAAgACAAIAAAAPAAQAAgAEAAIAAAAQAAQAAgABAAIAAAARAAQAAgABAAIAAAASAAQAAgABAAIAAAATAAQAAgAEAAIAAAAUAAQAAgADAAIAAAAVAAQAAgABAAIAAAAWAAQAAgABAAIAAAAXAAQAAgAEAAIAAAAYAAQAAgADAAIAAAAZAAQAAgABAAIAAAAaAAQAAgABAAIAAAAbAAQAAgACAAIAAAAcAAQAAgADAAIAAAAdAAQAAgABAAIAAAD//wQAAgAAAAIAAAAeAAQAAgAFAAIAAAA=")
+tile_set = SubResource("TileSet_621cg")
+
+[node name="Player" parent="." instance=ExtResource("2_wkjk4")]
+position = Vector2(88, 451)
+
+[connection signal="buttonPushed" from="Button" to="tempDoor" method="_on_button_button_pushed"]
