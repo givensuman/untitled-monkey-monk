@@ -9,25 +9,25 @@
 [node name="World" type="Node2D"]
 
 [node name="StaticBody2D" parent="." instance=ExtResource("1_muio2")]
-position = Vector2(137, 517)
+position = Vector2(136, 512)
 
 [node name="StaticBody2D2" parent="." instance=ExtResource("1_muio2")]
-position = Vector2(453, 517)
+position = Vector2(456, 512)
 
 [node name="StaticBody2D3" parent="." instance=ExtResource("1_muio2")]
-position = Vector2(776, 518)
+position = Vector2(776, 512)
 
 [node name="StaticBody2D4" parent="." instance=ExtResource("1_muio2")]
-position = Vector2(1093, 518)
+position = Vector2(1096, 512)
 
 [node name="StaticBody2D5" parent="." instance=ExtResource("1_muio2")]
-position = Vector2(1397, 517)
+position = Vector2(1424, 512)
 
 [node name="StaticBody2D9" parent="." instance=ExtResource("1_muio2")]
-position = Vector2(1722, 516)
+position = Vector2(1752, 512)
 
 [node name="StaticBody2D6" parent="." instance=ExtResource("1_muio2")]
-position = Vector2(1189, 407)
+position = Vector2(1184, 408)
 
 [node name="StaticBody2D7" parent="." instance=ExtResource("1_muio2")]
 position = Vector2(1568, 312)
@@ -39,10 +39,10 @@ position = Vector2(1184, 232)
 position = Vector2(88, 451)
 
 [node name="Button" parent="." instance=ExtResource("3_75xeo")]
-position = Vector2(1312, 216)
+position = Vector2(1200, 208)
 
 [node name="tempDoor" parent="." instance=ExtResource("4_7syjo")]
-position = Vector2(1887, 464)
+position = Vector2(1896, 432)
 script = ExtResource("5_efv4g")
 
 [connection signal="buttonPushed" from="Button" to="tempDoor" method="_on_button_button_pushed"]

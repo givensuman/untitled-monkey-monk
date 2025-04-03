@@ -11,6 +11,7 @@ height = 52.0
 script = ExtResource("1_ai0b7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
 texture = ExtResource("1_pai0m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -18,3 +19,4 @@ position = Vector2(-1, -2)
 shape = SubResource("CapsuleShape2D_7cufc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
