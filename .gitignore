@@ -1,3 +1,6 @@
+./sounds/_sources_
+./sounds/projects
+
 # - Based on https://github.com/github/gitignore/blob/master/Godot.gitignore
 
 # Godot-specific ignores
