@@ -1,11 +1,13 @@
-[gd_scene load_steps=11 format=4 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=14 format=4 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://vdh5byns55m2" path="res://game/test_scenes/temp_platform.tscn" id="1_uu6rj"]
+[ext_resource type="Script" uid="uid://ci0fs6ucn8pt8" path="res://game/scripts/world.gd" id="1_y08k3"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://cgwoelcj7k4p3" path="res://game/scenes/button.tscn" id="3_y08k3"]
 [ext_resource type="PackedScene" uid="uid://cqx1cagbcytae" path="res://game/test_scenes/temp_door.tscn" id="4_nepmf"]
 [ext_resource type="Script" uid="uid://dpumb3b0fo05v" path="res://game/scripts/temp_door.gd" id="5_ifrqp"]
 [ext_resource type="Texture2D" uid="uid://d31ue4kxt5qmf" path="res://art/tutorial_tileset.png" id="6_qur0g"]
+[ext_resource type="AudioStream" uid="uid://bxc51ucd4nf8" path="res://sounds/music/tutorial_drums.mp3/tutorial_drums.mp3" id="7_wkjk4"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_uu6rj"]
 
@@ -76,7 +78,12 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_uu6rj")
 sources/2 = SubResource("TileSetAtlasSource_eqg12")
 sources/4 = SubResource("TileSetAtlasSource_uu6rj")
 
+[sub_resource type="GDScript" id="GDScript_y08k3"]
+script/source = "extends AudioStreamPlayer
+"
+
 [node name="World" type="Node2D"]
+script = ExtResource("1_y08k3")
 
 [node name="StaticBody2D6" parent="." instance=ExtResource("1_uu6rj")]
 position = Vector2(1184, 408)
@@ -102,5 +109,9 @@ tile_set = SubResource("TileSet_621cg")
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 position = Vector2(88, 451)
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_wkjk4")
+script = SubResource("GDScript_y08k3")
 
 [connection signal="buttonPushed" from="Button" to="tempDoor" method="_on_button_button_pushed"]
