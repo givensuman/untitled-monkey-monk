@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=3 format=3 uid="uid://6lvhxowtgj46"]
 
+[ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 
 [node name="World" type="Node2D"]
@@ -7,3 +8,6 @@
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 position = Vector2(88, 451)
 scale = Vector2(0.75, 0.75)
+
+[node name="tutorial" parent="." instance=ExtResource("2_fy24a")]
+position = Vector2(4, -19)
