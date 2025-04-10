@@ -3,10 +3,11 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
+const FOOTSTEP_INTERVAL = 10000
 
 var can_dblJump = false
 var button = "res://button.tscn"
-
+var footstep_timer = 0.0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -32,8 +33,15 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	
+	handle_footsteps(delta)
 	move_and_slide()
+	
+func handle_footsteps(delta: float):
+	var is_moving = is_on_floor() and abs(velocity.x) > 10
+
+	if is_moving and not $WalkSound/Sound.playing:
+		$WalkSound/Sound.play()

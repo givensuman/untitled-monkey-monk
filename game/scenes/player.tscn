@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://o4owcmqmbaxu"]
+[gd_scene load_steps=6 format=3 uid="uid://o4owcmqmbaxu"]
 
 [ext_resource type="Script" uid="uid://c6nhinynh7olu" path="res://game/scripts/player.gd" id="1_ai0b7"]
 [ext_resource type="Texture2D" uid="uid://dnnjg7qpr1g8i" path="res://art/concept_character_static.png" id="1_pai0m"]
-[ext_resource type="AudioStream" uid="uid://b468dt0sepa12" path="res://sounds/fx/jump.mp3" id="3_u5gyh"]
+[ext_resource type="AudioStream" uid="uid://bs47vl8cf0sdg" path="res://sounds/fx/jump.mp3" id="3_u5gyh"]
+[ext_resource type="AudioStream" uid="uid://bguv3xo7yiw0l" path="res://sounds/FreeSteps/Dirt/Steps_dirt-004.ogg" id="4_uy5fi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cufc"]
 radius = 11.0
@@ -24,3 +25,10 @@ zoom = Vector2(3, 3)
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_u5gyh")
+
+[node name="WalkSound" type="Node2D" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="WalkSound"]
+stream = ExtResource("4_uy5fi")
+
+[node name="Timer" type="Timer" parent="WalkSound"]
