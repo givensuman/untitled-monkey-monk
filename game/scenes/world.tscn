@@ -5,9 +5,8 @@
 
 [node name="World" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(88, 451)
-scale = Vector2(0.75, 0.75)
-
 [node name="tutorial" parent="." instance=ExtResource("2_fy24a")]
 position = Vector2(4, -19)
+
+[node name="Player" parent="." instance=ExtResource("2_wkjk4")]
+position = Vector2(88, 451)
