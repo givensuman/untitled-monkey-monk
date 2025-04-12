@@ -23,12 +23,14 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		$JumpSound.play()
-		if direction:
-			if velocity.x > 0 and velocity.y == 0:
-				%AnimationPlayer.play("jump_right")
-			elif velocity.x < 0 and velocity.y < 0: 
-				$AnimationPlayer.play("jump_left")
+
 		can_dblJump = true
+	
+	if not is_on_floor() and direction:
+		if velocity.x > 0 and velocity.y == 0:
+			%AnimationPlayer.play("jump_right")
+		elif velocity.x < 0 and velocity.y < 0: 
+			%AnimationPlayer.play("jump_left")
 
 	if Input.is_action_just_pressed("ui_accept") and can_dblJump:
 		velocity.y = JUMP_VELOCITY
@@ -50,9 +52,9 @@ func _physics_process(delta: float) -> void:
 			$WalkSound/Timer.start()
 		
 		if velocity.x > 0:
-			$AnimationPlayer.play("walk_right")
+			%AnimationPlayer.play("walk_right")
 		elif velocity.x < 0:
-			$AnimationPlayer.play("walk_left")
+			%AnimationPlayer.play("walk_left")
 	else:
 		%AnimationPlayer.play("idle_right")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
