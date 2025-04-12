@@ -27,9 +27,9 @@ func _physics_process(delta: float) -> void:
 		can_dblJump = true
 	
 	if not is_on_floor() and direction:
-		if velocity.x > 0 and velocity.y == 0:
+		if velocity.x > 0:
 			%AnimationPlayer.play("jump_right")
-		elif velocity.x < 0 and velocity.y < 0: 
+		elif velocity.x < 0: 
 			%AnimationPlayer.play("jump_left")
 
 	if Input.is_action_just_pressed("ui_accept") and can_dblJump:
