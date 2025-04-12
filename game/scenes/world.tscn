@@ -9,9 +9,9 @@
 [node name="tutorial" parent="." instance=ExtResource("2_fy24a")]
 position = Vector2(4, -19)
 
-[node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(88, 451)
-
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fknqw")
 autoplay = true
+
+[node name="Player" parent="." instance=ExtResource("2_wkjk4")]
+position = Vector2(88, 451)
