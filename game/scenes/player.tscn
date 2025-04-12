@@ -1,7 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://o4owcmqmbaxu"]
+[gd_scene load_steps=14 format=3 uid="uid://o4owcmqmbaxu"]
 
 [ext_resource type="Script" uid="uid://c6nhinynh7olu" path="res://game/scripts/player.gd" id="1_ai0b7"]
 [ext_resource type="Texture2D" uid="uid://bdwl3rbrnx5xr" path="res://art/monkey-Sheet.png" id="2_fkr20"]
+[ext_resource type="AudioStream" uid="uid://b468dt0sepa12" path="res://sounds/fx/jump.mp3" id="3_u5gyh"]
+[ext_resource type="AudioStream" uid="uid://c5mklt5mcl4ht" path="res://sounds/FreeSteps/Dirt/Steps_dirt-004.ogg" id="4_uy5fi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cufc"]
 radius = 12.0
@@ -156,3 +158,17 @@ unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_od4tg")
 }
+
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_u5gyh")
+
+[node name="WalkSound" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="WalkSound"]
+process_callback = 0
+wait_time = 0.5
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="WalkSound"]
+stream = ExtResource("4_uy5fi")
+volume_db = 9.905
