@@ -15,7 +15,7 @@ stream = ExtResource("3_fknqw")
 autoplay = true
 
 [node name="RegTemple" parent="." instance=ExtResource("4_6pf46")]
-position = Vector2(1447, -803)
+position = Vector2(1438, -794)
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(88, 451)
+position = Vector2(39, 536)
