@@ -47,9 +47,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 		
 		if is_on_floor() and $WalkSound/Timer.is_stopped():
-			$WalkSound/Sound.volume_db = -5 + (RANDOM_VOLUME_AMOUNT * 2 * randf()) - RANDOM_VOLUME_AMOUNT
-			$WalkSound/Timer.wait_time = 0.5 + (RANDOM_VOLUME_TIMEOUT * 2 * randf()) - RANDOM_VOLUME_TIMEOUT
-			
 			$WalkSound/Sound.play()
 			$WalkSound/Timer.start()
 		
