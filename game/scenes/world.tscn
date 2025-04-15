@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=6 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="AudioStream" uid="uid://baaqr3y44ptjr" path="res://sounds/music/tutorial_drums.mp3" id="3_fknqw"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
+[ext_resource type="PackedScene" uid="uid://dkend1lth1pyk" path="res://game/scenes/vine.tscn" id="5_t03qb"]
 
 [node name="World" type="Node2D"]
 
@@ -19,3 +20,9 @@ position = Vector2(1447, -803)
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 position = Vector2(88, 451)
+
+[node name="Vine" parent="." instance=ExtResource("5_t03qb")]
+position = Vector2(550, 349)
+
+[node name="Vine2" parent="." instance=ExtResource("5_t03qb")]
+position = Vector2(392, 286)
