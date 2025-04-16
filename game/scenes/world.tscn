@@ -17,7 +17,7 @@ stream = ExtResource("3_fknqw")
 autoplay = true
 
 [node name="RegTemple" parent="." instance=ExtResource("4_6pf46")]
-position = Vector2(1438, -794)
+position = Vector2(1681, -802)
 
 [node name="Ambience" type="AudioStreamPlayer2D" parent="RegTemple"]
 stream = ExtResource("4_2gpe7")
