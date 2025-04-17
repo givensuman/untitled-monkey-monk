@@ -1,9 +1,9 @@
-[gd_scene load_steps=15 format=3 uid="uid://o4owcmqmbaxu"]
+[gd_scene load_steps=14 format=3 uid="uid://o4owcmqmbaxu"]
 
-[ext_resource type="Script" path="res://game/scripts/player.gd" id="1_ai0b7"]
+[ext_resource type="Script" uid="uid://c6nhinynh7olu" path="res://game/scripts/player.gd" id="1_ai0b7"]
 [ext_resource type="Texture2D" uid="uid://bdwl3rbrnx5xr" path="res://art/monkey-Sheet.png" id="2_fkr20"]
 [ext_resource type="AudioStream" uid="uid://b468dt0sepa12" path="res://sounds/fx/jump.mp3" id="3_u5gyh"]
-[ext_resource type="AudioStream" uid="uid://c5mklt5mcl4ht" path="res://sounds/FreeSteps/Dirt/Steps_dirt-004.ogg" id="4_uy5fi"]
+[ext_resource type="AudioStream" uid="uid://bt5eidj7o6tyh" path="res://sounds/fx/walk_dirt.ogg" id="4_uy5fi"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cufc"]
 radius = 12.0
@@ -124,18 +124,14 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_od4tg"]
 _data = {
-"RESET": SubResource("Animation_uy5fi"),
-"idle_left": SubResource("Animation_b6cxe"),
-"idle_right": SubResource("Animation_nggnu"),
-"jump_left": SubResource("Animation_fkr20"),
-"jump_right": SubResource("Animation_o5wgc"),
-"walk_left": SubResource("Animation_lvpx6"),
-"walk_right": SubResource("Animation_u5gyh")
+&"RESET": SubResource("Animation_uy5fi"),
+&"idle_left": SubResource("Animation_b6cxe"),
+&"idle_right": SubResource("Animation_nggnu"),
+&"jump_left": SubResource("Animation_fkr20"),
+&"jump_right": SubResource("Animation_o5wgc"),
+&"walk_left": SubResource("Animation_lvpx6"),
+&"walk_right": SubResource("Animation_u5gyh")
 }
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nq4nb"]
-radius = 7.98592
-height = 30.0241
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ai0b7")
@@ -148,7 +144,7 @@ frame = 22
 
 [node name="Shadow" type="Sprite2D" parent="Monkey"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["vine"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
 shape = SubResource("CapsuleShape2D_7cufc")
 
@@ -158,7 +154,7 @@ zoom = Vector2(3, 3)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-"": SubResource("AnimationLibrary_od4tg")
+&"": SubResource("AnimationLibrary_od4tg")
 }
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
@@ -173,18 +169,3 @@ one_shot = true
 
 [node name="Sound" type="AudioStreamPlayer2D" parent="WalkSound"]
 stream = ExtResource("4_uy5fi")
-volume_db = 9.905
-
-[node name="GrabZone" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrabZone"]
-position = Vector2(-2, -3)
-rotation = -0.0133687
-shape = SubResource("CapsuleShape2D_nq4nb")
-
-[node name="VineTimer" type="Timer" parent="GrabZone" groups=["vine"]]
-wait_time = 0.4
-one_shot = true
-
-[connection signal="area_entered" from="GrabZone" to="." method="_on_grab_zone_area_entered"]
-[connection signal="timeout" from="GrabZone/VineTimer" to="." method="_on_vine_timer_timeout"]
