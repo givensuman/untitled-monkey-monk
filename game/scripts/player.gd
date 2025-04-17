@@ -14,6 +14,9 @@ var last_direction = "right"
 var held_block = null
 var interact_range = 100.0  # How far the player can reach to grab blocks
 var block_scene = preload("res://game/scenes/block.tscn")
+var vine_grabbed = false
+var vine = null
+var can_grab = true
 
 # Reference to the world node for block placement
 var world_node
@@ -26,6 +29,17 @@ func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
 
 func _physics_process(delta: float) -> void:
+			#VINE CODE
+	var vine_release = false
+	if vine_grabbed:
+		global_position = vine.global_position
+		if Input.is_action_just_pressed("ui_accept"):
+			vine_grabbed = false
+			vine = null
+			$GrabZone/VineTimer.start()
+			vine_release = true
+		else:
+			return
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += _get_gravity() * delta * 1.5
@@ -35,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):
 		velocity.y = JUMP_VELOCITY
 		$JumpSound.play()
 
@@ -72,6 +86,10 @@ func _physics_process(delta: float) -> void:
 		else:
 			%AnimationPlayer.play("idle_left")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if held_block:
+		velocity.x = direction * SPEED * .5
+	else:
+		velocity.x = direction * SPEED
 	
 	# Handle block interaction (E key for interaction)
 	if Input.is_action_just_pressed("ui_focus_next"):  # E key by default
@@ -125,3 +143,14 @@ func spawn_block(position):
 		var new_block = block_scene.instantiate()
 		world_node.add_child(new_block)
 		new_block.global_position = position
+		
+func _on_grab_zone_area_entered(area: Area2D) -> void:
+	if area.is_in_group("vine") and can_grab:
+		vine_grabbed = true
+		vine = area
+		can_grab = false
+		print("Vine!")
+
+
+func _on_vine_timer_timeout() -> void:
+	can_grab = true
