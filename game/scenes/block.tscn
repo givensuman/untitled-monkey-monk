@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceb8iwsrlcsp0"]
+[gd_scene load_steps=5 format=3 uid="uid://bjw5cktr3vtp3"]
 
-[ext_resource type="Script" uid="uid://dqswhf4xlm4ax" path="res://game/scripts/block.gd" id="1_fjkqq"]
+[ext_resource type="Script" path="res://game/scripts/block.gd" id="1_fjkqq"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_u2g7i"]
 friction = 0.8
@@ -13,7 +13,7 @@ size = Vector2(64, 64)
 size = Vector2(70, 70)
 
 [node name="Block" type="RigidBody2D" groups=["pickable_blocks"]]
-collision_layer = 2
+collision_layer = 3
 collision_mask = 7
 mass = 5.0
 physics_material_override = SubResource("PhysicsMaterial_u2g7i")

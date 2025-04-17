@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://baaqr3y44ptjr" path="res://sounds/music/tutorial_drums.mp3" id="3_fknqw"]
 [ext_resource type="AudioStream" uid="uid://jdoc7f0q0byw" path="res://sounds/music/abandoned_temple_ambience.mp3" id="4_2gpe7"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
-[ext_resource type="PackedScene" uid="uid://ceb8iwsrlcsp0" path="res://game/scenes/block.tscn" id="6_uu6rj"]
+[ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 
 [node name="World" type="Node2D"]
 
