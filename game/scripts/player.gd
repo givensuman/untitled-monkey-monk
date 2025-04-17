@@ -34,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and [is_on_floor() or vine_release]:
+	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):
 		velocity.y = JUMP_VELOCITY
 		$JumpSound.play()
 
