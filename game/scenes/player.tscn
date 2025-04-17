@@ -134,9 +134,11 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
 script = ExtResource("1_ai0b7")
 
 [node name="Monkey" type="Sprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 3
 texture = ExtResource("2_fkr20")
 hframes = 28
