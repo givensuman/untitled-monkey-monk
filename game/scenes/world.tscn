@@ -25,29 +25,29 @@ position = Vector2(1681, -802)
 stream = ExtResource("4_2gpe7")
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(52, 493)
+position = Vector2(5000, 691)
 
 [node name="Block" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4690, 1342)
+position = Vector2(4704, 1381)
 
 [node name="Ruins" parent="." instance=ExtResource("7_wkjk4")]
 z_index = -1
-position = Vector2(2693, 379)
+position = Vector2(2915, 398)
 
 [node name="Block2" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4568, 1368)
+position = Vector2(5223, 1063)
 
 [node name="Block3" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4464, 1368)
+position = Vector2(5312, 1065)
 
 [node name="Block4" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4376, 1368)
+position = Vector2(5221, 1140)
 
 [node name="Block5" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4288, 1368)
+position = Vector2(4418, 1271)
 
 [node name="Block6" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4200, 1368)
+position = Vector2(5307, 1141)
 
 [node name="Block7" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4088, 1360)
+position = Vector2(4423, 1371)
