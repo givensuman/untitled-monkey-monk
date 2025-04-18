@@ -129,12 +129,8 @@ func place_block():
 	if not held_block:
 		return
 	
-	# Calculate placement position 
-	var place_direction = 1 if last_direction == "right" else -1
-	var place_pos = global_position + Vector2(place_direction * 60, 40)
-	
-	# Place the block
-	held_block.place_down(place_pos)
+	# Place the block (placement position is now handled in block.gd)
+	held_block.place_down()
 	held_block = null
 
 # Spawn a new block (for testing or adding blocks to the world)
