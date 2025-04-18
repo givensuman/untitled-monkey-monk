@@ -1,38 +1,82 @@
-[gd_scene load_steps=8 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=12 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
-[ext_resource type="AudioStream" uid="uid://baaqr3y44ptjr" path="res://sounds/music/tutorial_drums.mp3" id="3_fknqw"]
-[ext_resource type="AudioStream" uid="uid://jdoc7f0q0byw" path="res://sounds/music/abandoned_temple_ambience.mp3" id="4_2gpe7"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
+[ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
+[ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
+size = Vector2(1708, 1028)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_temple"]
+size = Vector2(2712, 1624)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(50, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruins"]
+size = Vector2(2880, 1080)
 
 [node name="World" type="Node2D"]
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("10_audio")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+autoplay = true
+
+[node name="TransitionPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="tutorial" parent="." instance=ExtResource("2_fy24a")]
 position = Vector2(4, -19)
 
-[node name="Music" type="AudioStreamPlayer2D" parent="tutorial"]
+[node name="TutorialMusicZone" type="Area2D" parent="tutorial"]
 position = Vector2(-4, 19)
-stream = ExtResource("3_fknqw")
-autoplay = true
+script = ExtResource("9_xkw3f")
+zone_name = "tutorial"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tutorial/TutorialMusicZone"]
+position = Vector2(826, 258)
+shape = SubResource("RectangleShape2D_tutorial")
 
 [node name="RegTemple" parent="." instance=ExtResource("4_6pf46")]
 position = Vector2(1681, -802)
 
-[node name="Ambience" type="AudioStreamPlayer2D" parent="RegTemple"]
-stream = ExtResource("4_2gpe7")
+[node name="TempleAmbienceZone" type="Area2D" parent="RegTemple"]
+script = ExtResource("9_xkw3f")
+zone_name = "temple"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RegTemple/TempleAmbienceZone"]
+position = Vector2(1363, 382)
+shape = SubResource("RectangleShape2D_temple")
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(5000, 691)
+position = Vector2(3928, -896)
+
+[node name="PlayerArea" type="Area2D" parent="Player"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PlayerArea"]
+shape = SubResource("RectangleShape2D_player")
 
 [node name="Block" parent="." instance=ExtResource("6_uu6rj")]
 position = Vector2(4704, 1381)
 
 [node name="Ruins" parent="." instance=ExtResource("7_wkjk4")]
 z_index = -1
-position = Vector2(2915, 398)
+position = Vector2(2920, 384)
+
+[node name="RuinsMusicZone" type="Area2D" parent="Ruins"]
+script = ExtResource("9_xkw3f")
+zone_name = "ruins"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/RuinsMusicZone"]
+position = Vector2(1512, 548)
+shape = SubResource("RectangleShape2D_ruins")
 
 [node name="Block2" parent="." instance=ExtResource("6_uu6rj")]
 position = Vector2(5223, 1063)

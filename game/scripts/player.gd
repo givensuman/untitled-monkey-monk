@@ -24,6 +24,11 @@ var world_node
 func _ready():
 	# Try to find the world node
 	world_node = get_tree().get_root().get_node("World")
+	# Add player group to both the player and its area
+	add_to_group("player")
+	$PlayerArea.add_to_group("player")
+	# Set initial footstep sound
+	$WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
 
 func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
@@ -91,8 +96,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = direction * SPEED
 	
-	# Handle block interaction (E key for interaction)
-	if Input.is_action_just_pressed("ui_focus_next"):  # E key by default
+	if Input.is_action_just_pressed("ui_focus_next"):
 		if held_block:
 			place_block()
 		else:
