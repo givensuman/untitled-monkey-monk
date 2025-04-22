@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=14 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
-[ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
-[ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
+[ext_resource type="PackedScene" uid="uid://c24spsu54k2xd" path="res://game/scenes/gorilla_statue.tscn" id="8_cedby"]
+[ext_resource type="Script" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
+[ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
 size = Vector2(1708, 1028)
@@ -19,6 +20,10 @@ size = Vector2(50, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ruins"]
 size = Vector2(2880, 1080)
+
+[sub_resource type="LabelSettings" id="LabelSettings_enef0"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node2D"]
 
@@ -52,6 +57,9 @@ zone_name = "temple"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RegTemple/TempleAmbienceZone"]
 position = Vector2(1363, 382)
 shape = SubResource("RectangleShape2D_temple")
+
+[node name="gorilla_statue" parent="." instance=ExtResource("8_cedby")]
+position = Vector2(3144, 1352)
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 position = Vector2(3928, -896)
@@ -95,3 +103,16 @@ position = Vector2(5307, 1141)
 
 [node name="Block7" parent="." instance=ExtResource("6_uu6rj")]
 position = Vector2(4423, 1371)
+
+[node name="gorilla_label" type="Label" parent="."]
+offset_left = 3072.0
+offset_top = 1192.0
+offset_right = 3241.0
+offset_bottom = 1293.0
+text = "You have unlocked
+ the gorilla ability!
+Now you can pick
+ up blocks using Tab"
+label_settings = SubResource("LabelSettings_enef0")
+
+[connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]

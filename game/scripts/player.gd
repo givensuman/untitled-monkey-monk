@@ -17,6 +17,7 @@ var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
+var gorilla_unlocked = false
 
 # Reference to the world node for block placement
 var world_node
@@ -29,6 +30,7 @@ func _ready():
 	$PlayerArea.add_to_group("player")
 	# Set initial footstep sound
 	$WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
+	$"../gorilla_label".hide()
 
 func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
@@ -96,7 +98,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = direction * SPEED
 	
-	if Input.is_action_just_pressed("ui_focus_next"):
+	if Input.is_action_just_pressed("ui_focus_next") and gorilla_unlocked:
 		if held_block:
 			place_block()
 		else:
@@ -158,3 +160,10 @@ func _on_grab_zone_area_entered(area: Area2D) -> void:
 
 func _on_vine_timer_timeout() -> void:
 	can_grab = true
+
+
+func _on_gorilla_statue_body_entered(body: Node2D) -> void:
+	print("gorilla ability!")
+#	Play animation/music
+	gorilla_unlocked = true
+	$"../gorilla_label".show()
