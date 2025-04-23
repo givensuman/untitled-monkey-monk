@@ -78,7 +78,6 @@ func place_down():
 	is_picked_up = false
 	emit_signal("placed_down")
 	
-	# Play place sound
 	if place_sound:
 		place_sound.play()
 	
@@ -95,12 +94,15 @@ func place_down():
 	var direction = 1 if player.last_direction == "right" else -1
 	var place_pos = player.global_position + Vector2(placement_distance * direction, 0)
 	
+	# Check for block below and snap if needed
+	place_pos = get_snap_position(place_pos)
+	
 	# Change parent back to the world
 	var world = get_tree().get_root().get_node("World")
 	get_parent().remove_child(self)
 	world.add_child(self)
 	
-	# Position the block and let physics take over
+	# Position the block
 	global_position = place_pos
 	
 	# Reset velocity before unfreezing
@@ -123,6 +125,92 @@ func _process(_delta):
 	else:
 		update_pickup_indicator()
 
+# Get position to snap to, avoiding overlaps with other blocks
+func get_snap_position(pos: Vector2) -> Vector2:
+	var space_state = get_world_2d().direct_space_state
+	
+	# First check for blocks below to handle stacking
+	var ray_query = PhysicsRayQueryParameters2D.create(pos - Vector2(0, grid_size/2), pos + Vector2(0, grid_size*2))
+	ray_query.exclude = [self]
+	ray_query.collision_mask = original_collision_mask
+	
+	var ray_result = space_state.intersect_ray(ray_query)
+	if ray_result && ray_result.collider.is_in_group("pickable_blocks"):
+		# Snap both X and Y for perfect alignment
+		var target_block = ray_result.collider
+		var snapped_x = round(pos.x / grid_size) * grid_size
+		var snapped_pos = Vector2(snapped_x, target_block.global_position.y - grid_size)
+		
+		# Verify the stacked position isn't occupied horizontally
+		var shape = RectangleShape2D.new()
+		shape.size = Vector2(grid_size - 2, grid_size - 2)
+		var query = PhysicsShapeQueryParameters2D.new()
+		query.shape = shape
+		query.transform = Transform2D(0, snapped_pos)
+		query.collision_mask = original_collision_mask
+		query.exclude = [self]
+		
+		var results = space_state.intersect_shape(query)
+		var can_stack = true
+		for result in results:
+			if result.collider.is_in_group("pickable_blocks"):
+				can_stack = false
+				break
+		
+		if can_stack:
+			return snapped_pos
+	
+	# If we can't stack, handle horizontal placement
+	var shape = RectangleShape2D.new()
+	shape.size = Vector2(grid_size - 2, grid_size - 2)
+	
+	var query = PhysicsShapeQueryParameters2D.new()
+	query.shape = shape
+	query.transform = Transform2D(0, pos)
+	query.collision_mask = original_collision_mask
+	query.exclude = [self]
+	
+	var results = space_state.intersect_shape(query)
+	
+	# If we found a collision with another block
+	for result in results:
+		var collider = result.collider
+		if collider.is_in_group("pickable_blocks"):
+			# Calculate if we should place left or right of the colliding block
+			var direction = 1 if pos.x > collider.global_position.x else -1
+			# Snap to the grid when placing horizontally as well
+			var new_x = collider.global_position.x + (direction * grid_size)
+			var new_pos = Vector2(round(new_x / grid_size) * grid_size, round(pos.y / grid_size) * grid_size)
+			
+			# Check if the new position is also occupied
+			query.transform = Transform2D(0, new_pos)
+			var side_results = space_state.intersect_shape(query)
+			var side_blocked = false
+			for side_result in side_results:
+				if side_result.collider.is_in_group("pickable_blocks"):
+					side_blocked = true
+					break
+			
+			if !side_blocked:
+				return new_pos
+			else:
+				# Try the other side if the preferred side is blocked
+				direction *= -1
+				new_x = collider.global_position.x + (direction * grid_size)
+				new_pos = Vector2(round(new_x / grid_size) * grid_size, round(pos.y / grid_size) * grid_size)
+				query.transform = Transform2D(0, new_pos)
+				side_results = space_state.intersect_shape(query)
+				side_blocked = false
+				for side_result in side_results:
+					if side_result.collider.is_in_group("pickable_blocks"):
+						side_blocked = true
+						break
+				if !side_blocked:
+					return new_pos
+	
+	# If no snapping occurred, ensure the final position is grid-aligned
+	return Vector2(round(pos.x / grid_size) * grid_size, round(pos.y / grid_size) * grid_size)
+
 func update_placement_preview():
 	if !placement_preview:
 		return
@@ -131,7 +219,10 @@ func update_placement_preview():
 	var player = get_parent()
 	var direction = 1 if player.last_direction == "right" else -1
 	var preview_pos = player.global_position + Vector2(placement_distance * direction, 0)
-	placement_preview.global_position = preview_pos
+	
+	# Check for block below and snap if needed
+	preview_pos = get_snap_position(preview_pos)
+	placement_preview.global_position = preview_pos - Vector2(0, grid_size/2)
 
 func update_ground_indicator():
 	if !ground_indicator || !placement_preview:

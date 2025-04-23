@@ -41,7 +41,8 @@ offset_bottom = 33.0
 color = Color(0.235294, 0.168627, 0.121569, 1)
 
 [node name="PlacementPreview" type="ColorRect" parent="."]
-z_index = -1
+visible = false
+z_index = 1
 offset_left = -32.0
 offset_top = -32.0
 offset_right = 32.0
