@@ -20,7 +20,7 @@ var vine_grabbed = false
 var vine = null
 var can_grab = true
 
-var last_checkpoint: Area2D = null
+var last_checkpoint: Node = null
 
 # Reference to the world node for block placement
 var world_node
@@ -44,6 +44,16 @@ func _ready():
 func respawn():
 	global_position = spawn_position
 	velocity = Vector2.ZERO
+
+func get_last_checkpoint():
+	return last_checkpoint
+
+func update_checkpoint(checkpoint: Node) -> bool:
+	if checkpoint != last_checkpoint:
+		last_checkpoint = checkpoint
+		spawn_position = checkpoint.global_position
+		return true
+	return false
 
 func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
@@ -153,11 +163,11 @@ func place_block():
 	held_block = null
 
 # Spawn a new block (for testing or adding blocks to the world)
-func spawn_block(spawn_position):
+func spawn_block(block_position):
 	if world_node:
 		var new_block = block_scene.instantiate()
 		world_node.add_child(new_block)
-		new_block.global_position = spawn_position
+		new_block.global_position = block_position
 		
 func _on_grab_zone_area_entered(area: Area2D) -> void:
 	if area.is_in_group("vine") and can_grab:
