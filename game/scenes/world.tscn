@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
 [ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
 [ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
-[ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
+[ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
-size = Vector2(1708, 1028)
+size = Vector2(2102, 1544)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_temple"]
 size = Vector2(2712, 1624)
@@ -41,7 +41,7 @@ script = ExtResource("9_xkw3f")
 zone_name = "tutorial"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tutorial/TutorialMusicZone"]
-position = Vector2(826, 258)
+position = Vector2(959, 312)
 shape = SubResource("RectangleShape2D_tutorial")
 
 [node name="RegTemple" parent="." instance=ExtResource("4_6pf46")]
@@ -52,7 +52,6 @@ script = ExtResource("9_xkw3f")
 zone_name = "temple"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RegTemple/TempleAmbienceZone"]
-visible = false
 position = Vector2(1363, 382)
 shape = SubResource("RectangleShape2D_temple")
 
