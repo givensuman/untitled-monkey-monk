@@ -1,19 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://dt2k2avria3ff"]
+[gd_scene load_steps=4 format=3 uid="uid://dt2k2avria3ff"]
 
 [ext_resource type="Script" uid="uid://c6q0nfsjkrj2h" path="res://game/scripts/spikes.gd" id="1_spikes"]
 [ext_resource type="AudioStream" uid="uid://ov8w50xotlca" path="res://sounds/fx/hurt.mp3" id="2_cs0mq"]
+[ext_resource type="Texture2D" uid="uid://cpmmp7bnuxsjt" path="res://art/spikes.png" id="2_wn7lh"]
 
 [node name="Spikes" type="Area2D"]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_spikes")
 
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(0, -16, 16, 16, -16, 16)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(-1, -83)
+scale = Vector2(3, 3)
+texture = ExtResource("2_wn7lh")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.780392, 0.180392, 0.164706, 1)
-polygon = PackedVector2Array(-16, 16, 0, -16, 16, 16)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-151, 35)
+polygon = PackedVector2Array(103, -30, 117, -61, 119, -61, 126, -49, 135, -67, 138, -67, 146, -51, 151, -61, 156, -55, 162, -67, 165, -67, 174, -50, 180, -61, 183, -61, 198, -31, 198, -22, 102, -22, 102, -30)
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_cs0mq")
