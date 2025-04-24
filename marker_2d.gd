@@ -7,10 +7,15 @@ var pivot_point:Vector2
 var arm_length: float
 var angle
 
+@onready var vineArea = $".."
+
 @export var gravity = .4*60
 @export var damping = 0.995
 var angular_velocity = 0.0
 var angular_acceleration = 0.0
+var max_angular_acceleration = 0.0006
+var max_angle = .9
+var min_angle = -.9
 @onready var vine_sprite = $"../Sprite2D"
 @onready var grab_zone = $"../CollisionShape2D"
 @onready var vine_collision = $"../CollisionShape2D"
@@ -29,9 +34,15 @@ func _ready() -> void:
 
 func process_velocity(delta:float)->void:
 	angular_acceleration = ((-gravity*delta)/arm_length) *sin(angle)
+	if angular_acceleration > max_angular_acceleration:
+		angular_acceleration = max_angular_acceleration
 	angular_velocity += angular_acceleration
 	angular_velocity *= damping
 	angle += angular_velocity
+	if angle > max_angle:
+		angle = max_angle
+	elif angle < min_angle:
+		angle = min_angle
 	
 	end_position = pivot_point + Vector2(arm_length*sin(angle), arm_length*cos(angle))
 	
@@ -55,7 +66,8 @@ func game_input()->void:
 	add_angular_velocity(dir*.02)
 
 func _physics_process(delta: float) -> void:
-	game_input()
+	if vineArea.grabbed:
+		game_input()
 	
 	process_velocity(delta)
 	queue_redraw()

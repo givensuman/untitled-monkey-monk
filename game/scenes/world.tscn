@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=15 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="Script" path="res://game/scenes/world.gd" id="1_xlvax"]
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
@@ -16,9 +16,6 @@ size = Vector2(1708, 1028)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_temple"]
 size = Vector2(2712, 1624)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
-size = Vector2(50, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ruins"]
 size = Vector2(2880, 1080)
@@ -71,9 +68,6 @@ position = Vector2(3928, -896)
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
 collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PlayerArea"]
-shape = SubResource("RectangleShape2D_player")
 
 [node name="Block" parent="." instance=ExtResource("6_uu6rj")]
 position = Vector2(4704, 1381)

@@ -32,19 +32,20 @@ func _ready():
 	# Set initial footstep sound
 	$WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
 	$"../gorilla_label".hide()
+	var vines = get_tree().get_nodes_in_group("vine")
 
 func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
 
 func _physics_process(delta: float) -> void:
+	#print(velocity)
 			#VINE CODE
 	var vine_release = false
 	if vine_grabbed:
-		#var vine_script = vine as Vine
-		print("casted vine script")  # Cast vine to the Vine script type
-		print("vine position")
 		position = vine.end_position  # Now we can access `end_position` properly
-		velocity = Vector2.ZERO   # Prevent any movement while on the vine
+		velocity = Vector2.ZERO
+		velocity.x = 0
+		velocity.y = 0 
 		if Input.is_action_just_pressed("ui_accept"):
 			vine_grabbed = false
 			vine = null
@@ -177,8 +178,10 @@ func _on_gorilla_statue_body_entered(body: Node2D) -> void:
 func _on_vine_real_body_entered(body: Node2D) -> void:
 	print("Player entered the vine!")
 	if body.is_in_group("player") and can_grab:
+		$vine_timer.start()
 		vine_grabbed = true
-		vine = $"../vine_real" # Assigning the player to the vine variable
+		vine = $"../vine_real"
+		vine.grabbed = true
 		print(body.name)
 		can_grab = false
 		print("Vine grabbed!")

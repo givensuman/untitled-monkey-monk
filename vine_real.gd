@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var marker = $Marker2D
 @export var end_position = Vector2()
+@export var grabbed = false
 
 
 # Called when the node enters the scene tree for the first time.
