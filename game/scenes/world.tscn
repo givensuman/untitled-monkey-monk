@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
-[ext_resource type="PackedScene" uid="uid://c24spsu54k2xd" path="res://game/scenes/gorilla_statue.tscn" id="8_cedby"]
+[ext_resource type="PackedScene" uid="uid://c8pdfnrp0y6ia" path="res://game/scenes/gorilla_statue.tscn" id="8_cedby"]
 [ext_resource type="Script" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
 [ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 
