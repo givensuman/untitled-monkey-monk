@@ -7,11 +7,12 @@ const JUMP_VELOCITY = -600.0
 const RANDOM_VOLUME_AMOUNT = 5
 const RANDOM_VOLUME_TIMEOUT = 0.1
 
+var spawn_position: Vector2
 var can_dblJump = false
 var button = "res://button.tscn"
 
 var last_direction = "right"
-var held_block = null
+var held_block: Node = null
 var interact_range = 100.0  # How far the player can reach to grab blocks
 var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
@@ -29,6 +30,14 @@ func _ready():
 	$PlayerArea.add_to_group("player")
 	# Set initial footstep sound
 	$WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
+	# Store initial spawn position
+	spawn_position = global_position
+	# Connect area entered signal for spike detection
+	$PlayerArea.area_entered.connect(_on_player_area_entered)
+
+func respawn():
+	global_position = spawn_position
+	velocity = Vector2.ZERO
 
 func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
@@ -138,11 +147,11 @@ func place_block():
 	held_block = null
 
 # Spawn a new block (for testing or adding blocks to the world)
-func spawn_block(position):
+func spawn_block(spawn_position):
 	if world_node:
 		var new_block = block_scene.instantiate()
 		world_node.add_child(new_block)
-		new_block.global_position = position
+		new_block.global_position = spawn_position
 		
 func _on_grab_zone_area_entered(area: Area2D) -> void:
 	if area.is_in_group("vine") and can_grab:
@@ -154,3 +163,7 @@ func _on_grab_zone_area_entered(area: Area2D) -> void:
 
 func _on_vine_timer_timeout() -> void:
 	can_grab = true
+
+func _on_player_area_entered(area: Area2D) -> void:
+	if area.get_parent().name == "Spikes":
+		respawn()

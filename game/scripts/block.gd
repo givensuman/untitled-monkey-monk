@@ -207,7 +207,12 @@ func update_pickup_indicator():
 		return
 		
 	var player = get_tree().get_root().get_node("World/Player")
-	if !player || player.held_block:
+	if !player:
+		pickup_indicator.visible = false
+		return
+		
+	# Check if player has held_block property and if it has a value
+	if "held_block" in player and player.held_block:
 		pickup_indicator.visible = false
 		return
 		

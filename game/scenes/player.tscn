@@ -132,8 +132,10 @@ _data = {
 &"walk_right": SubResource("Animation_u5gyh")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_ai0b7")
 
 [node name="Monkey" type="Sprite2D" parent="."]

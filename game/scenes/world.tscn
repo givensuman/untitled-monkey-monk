@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=13 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
+[ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
 [ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
-[ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
+[ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
 size = Vector2(1708, 1028)
@@ -74,6 +75,9 @@ zone_name = "ruins"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/RuinsMusicZone"]
 position = Vector2(1512, 548)
 shape = SubResource("RectangleShape2D_ruins")
+
+[node name="Spikes" parent="Ruins/RuinsMusicZone" instance=ExtResource("7_y08k3")]
+position = Vector2(560, 950)
 
 [node name="Block" parent="." instance=ExtResource("6_uu6rj")]
 position = Vector2(4666, 1392)
