@@ -14,10 +14,13 @@ var button = "res://button.tscn"
 var last_direction = "right"
 var held_block: Node = null
 var interact_range = 100.0  # How far the player can reach to grab blocks
+
 var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
+
+var last_checkpoint: Area2D = null
 
 # Reference to the world node for block placement
 var world_node
@@ -34,6 +37,9 @@ func _ready():
 	spawn_position = global_position
 	# Connect area entered signal for spike detection
 	$PlayerArea.area_entered.connect(_on_player_area_entered)
+	# Set initial checkpoint
+	# TODO: Change to tutorial once that's merged
+	last_checkpoint = get_tree().get_root().get_node("World/TempleCheckpoint")
 
 func respawn():
 	global_position = spawn_position

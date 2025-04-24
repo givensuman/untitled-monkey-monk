@@ -12,5 +12,4 @@ func _ready():
 func _on_body_entered(body):
 	# Check if the colliding body is the player
 	if body.is_in_group("player"):
-		# TODO: Implement damage logic when player health system is ready
-		print("Player hit spikes!")
+		body.respawn()

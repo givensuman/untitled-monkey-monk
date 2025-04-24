@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
-[ext_resource type="PackedScene" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
+[ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
 [ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
 [ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 
@@ -52,6 +52,7 @@ script = ExtResource("9_xkw3f")
 zone_name = "temple"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RegTemple/TempleAmbienceZone"]
+visible = false
 position = Vector2(1363, 382)
 shape = SubResource("RectangleShape2D_temple")
 
@@ -64,9 +65,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PlayerArea"]
 shape = SubResource("RectangleShape2D_player")
-
-[node name="Checkpoint" parent="." instance=ExtResource("9_nepmf")]
-position = Vector2(3928, -850)
 
 [node name="Ruins" parent="." instance=ExtResource("7_wkjk4")]
 z_index = -1
@@ -81,7 +79,7 @@ position = Vector2(1512, 548)
 shape = SubResource("RectangleShape2D_ruins")
 
 [node name="Spikes" parent="Ruins/RuinsMusicZone" instance=ExtResource("7_y08k3")]
-position = Vector2(560, 950)
+position = Vector2(988, 992)
 
 [node name="Block" parent="." instance=ExtResource("6_uu6rj")]
 position = Vector2(4666, 1392)
@@ -104,5 +102,8 @@ position = Vector2(5135, 1157)
 [node name="Block7" parent="." instance=ExtResource("6_uu6rj")]
 position = Vector2(4441, 1391)
 
-[node name="Checkpoint2" parent="." instance=ExtResource("9_nepmf")]
-position = Vector2(4002, -889)
+[node name="TempleCheckpoint" parent="." instance=ExtResource("9_nepmf")]
+position = Vector2(1790, -84)
+
+[node name="RuinsCheckpoint" parent="." instance=ExtResource("9_nepmf")]
+position = Vector2(3284, 1351)
