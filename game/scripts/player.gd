@@ -16,6 +16,7 @@ var interact_range = 100.0  # How far the player can reach to grab blocks
 var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
+var player = null
 var can_grab = true
 var gorilla_unlocked = false
 
@@ -39,19 +40,26 @@ func _physics_process(delta: float) -> void:
 			#VINE CODE
 	var vine_release = false
 	if vine_grabbed:
-		global_position = vine.global_position
+		#var vine_script = vine as Vine
+		print("casted vine script")  # Cast vine to the Vine script type
+		print("vine position")
+		position = vine.end_position  # Now we can access `end_position` properly
+		velocity = Vector2.ZERO   # Prevent any movement while on the vine
 		if Input.is_action_just_pressed("ui_accept"):
 			vine_grabbed = false
 			vine = null
-			$GrabZone/VineTimer.start()
+			#$GrabZone/VineTimer.start()
 			vine_release = true
-		else:
+			velocity.y = JUMP_VELOCITY
 			return
+		else:
+			velocity = Vector2.ZERO
 	# Add the gravity.
-	if not is_on_floor():
-		velocity += _get_gravity() * delta * 1.5
-	if is_on_floor(): 
-		can_dblJump = false
+	else:
+		if not is_on_floor():
+			velocity += _get_gravity() * delta * 1.5
+		if is_on_floor(): 
+			can_dblJump = false
 	
 	var direction := Input.get_axis("walk_left", "walk_right")
 	
@@ -147,11 +155,12 @@ func spawn_block(position):
 		new_block.global_position = position
 		
 func _on_grab_zone_area_entered(area: Area2D) -> void:
+	print('Area entered!')
 	if area.is_in_group("vine") and can_grab:
 		vine_grabbed = true
 		vine = area
 		can_grab = false
-		print("Vine!")
+		print("Vine grabbed!")
 
 
 func _on_vine_timer_timeout() -> void:
@@ -163,3 +172,13 @@ func _on_gorilla_statue_body_entered(body: Node2D) -> void:
 #	Play animation/music
 	gorilla_unlocked = true
 	$"../gorilla_label".show()
+
+
+func _on_vine_real_body_entered(body: Node2D) -> void:
+	print("Player entered the vine!")
+	if body.is_in_group("player") and can_grab:
+		vine_grabbed = true
+		vine = $"../vine_real" # Assigning the player to the vine variable
+		print(body.name)
+		can_grab = false
+		print("Vine grabbed!")

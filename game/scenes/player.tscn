@@ -132,8 +132,9 @@ _data = {
 "walk_right": SubResource("Animation_u5gyh")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["vine"]]
 y_sort_enabled = true
+safe_margin = 0.001
 script = ExtResource("1_ai0b7")
 
 [node name="Monkey" type="Sprite2D" parent="."]

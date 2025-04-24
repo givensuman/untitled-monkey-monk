@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=16 format=3 uid="uid://6lvhxowtgj46"]
 
+[ext_resource type="Script" path="res://game/scenes/world.gd" id="1_xlvax"]
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://c8pdfnrp0y6ia" path="res://game/scenes/gorilla_statue.tscn" id="8_cedby"]
+[ext_resource type="PackedScene" uid="uid://o1cjensesrav" path="res://vine_real.tscn" id="9_uxvnl"]
 [ext_resource type="Script" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
 [ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 
@@ -26,6 +28,7 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_xlvax")
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("10_audio")
@@ -55,11 +58,12 @@ script = ExtResource("9_xkw3f")
 zone_name = "temple"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RegTemple/TempleAmbienceZone"]
-position = Vector2(1363, 382)
+position = Vector2(1367, 354)
 shape = SubResource("RectangleShape2D_temple")
 
 [node name="gorilla_statue" parent="." instance=ExtResource("8_cedby")]
 position = Vector2(3144, 1352)
+script = null
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 position = Vector2(3928, -896)
@@ -115,4 +119,8 @@ Now you can pick
  up blocks using Tab"
 label_settings = SubResource("LabelSettings_enef0")
 
+[node name="vine_real" parent="." instance=ExtResource("9_uxvnl")]
+position = Vector2(4352, -1232)
+
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
+[connection signal="body_entered" from="vine_real" to="Player" method="_on_vine_real_body_entered"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://o1cjensesrav"]
+
+[ext_resource type="Script" path="res://marker_2d.gd" id="1_peorl"]
+[ext_resource type="Script" path="res://vine_real.gd" id="1_qicnk"]
+[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="2_t6cky"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6owg"]
+size = Vector2(5, 268)
+
+[node name="vine_real" type="Area2D" groups=["vine"]]
+script = ExtResource("1_qicnk")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+script = ExtResource("1_peorl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, 72)
+scale = Vector2(0.0390625, 2.09375)
+texture = ExtResource("2_t6cky")
+
+[node name="vineReal" type="Node2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 72)
+shape = SubResource("RectangleShape2D_h6owg")
