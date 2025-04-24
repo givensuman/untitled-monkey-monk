@@ -24,6 +24,11 @@ var world_node
 func _ready():
 	# Try to find the world node
 	world_node = get_tree().get_root().get_node("World")
+	# Add player group to both the player and its area
+	add_to_group("player")
+	$PlayerArea.add_to_group("player")
+	# Set initial footstep sound
+	$WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
 
 func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
@@ -91,8 +96,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = direction * SPEED
 	
-	# Handle block interaction (E key for interaction)
-	if Input.is_action_just_pressed("ui_focus_next"):  # E key by default
+	if Input.is_action_just_pressed("ui_focus_next"):
 		if held_block:
 			place_block()
 		else:
@@ -129,12 +133,8 @@ func place_block():
 	if not held_block:
 		return
 	
-	# Calculate placement position 
-	var place_direction = 1 if last_direction == "right" else -1
-	var place_pos = global_position + Vector2(place_direction * 60, 40)
-	
-	# Place the block
-	held_block.place_down(place_pos)
+	# Place the block (placement position is now handled in block.gd)
+	held_block.place_down()
 	held_block = null
 
 # Spawn a new block (for testing or adding blocks to the world)
