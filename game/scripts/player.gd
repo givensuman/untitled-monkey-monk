@@ -22,7 +22,6 @@ var can_grab = true
 var gorilla_unlocked = false
 
 var last_checkpoint: Node = null
-
 # Reference to the world node for block placement
 var world_node
 
@@ -126,6 +125,10 @@ func _physics_process(delta: float) -> void:
 			%AnimationPlayer.play("idle_left")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	if held_block:
+		if velocity.x > 0:
+			%AnimationPlayer.play("lift_walk_right")
+		elif velocity.x < 0:
+			%AnimationPlayer.play("lift_walk_left")
 		velocity.x = direction * SPEED * .5
 	else:
 		velocity.x = direction * SPEED
