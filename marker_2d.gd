@@ -67,8 +67,7 @@ func game_input()->void:
 
 func _physics_process(delta: float) -> void:
 	if vineArea.grabbed:
-		game_input()
-	
+		game_input()	
 	process_velocity(delta)
 	queue_redraw()
 func _draw() -> void:

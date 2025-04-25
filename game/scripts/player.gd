@@ -47,9 +47,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.y = 0 
 		if Input.is_action_just_pressed("ui_accept"):
+			vine.grabbed = false
 			vine_grabbed = false
 			vine = null
-			#$GrabZone/VineTimer.start()
+			$vine_timer.start()
 			vine_release = true
 			velocity.y = JUMP_VELOCITY
 			return
@@ -175,13 +176,23 @@ func _on_gorilla_statue_body_entered(body: Node2D) -> void:
 	$"../gorilla_label".show()
 
 
-func _on_vine_real_body_entered(body: Node2D) -> void:
+#func _on_vine_real_body_entered(body: Node2D) -> void:
+	#print("Player entered the vine!")
+	#if body.is_in_group("player") and can_grab:
+		#$vine_timer.start()
+		#vine_grabbed = true
+		#vine = $"../vine_real"
+		#print(body.name)
+		#can_grab = false
+		#print("Vine grabbed!")
+
+
+func _on_grab_area_area_entered(area: Area2D) -> void:
 	print("Player entered the vine!")
-	if body.is_in_group("player") and can_grab:
+	if area.is_in_group("vine") and can_grab:
 		$vine_timer.start()
 		vine_grabbed = true
-		vine = $"../vine_real"
-		vine.grabbed = true
-		print(body.name)
+		vine = area
 		can_grab = false
-		print("Vine grabbed!")
+		vine.grabbed = true
+		print("Vine grabbed")

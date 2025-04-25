@@ -116,5 +116,17 @@ label_settings = SubResource("LabelSettings_enef0")
 [node name="vine_real" parent="." instance=ExtResource("9_uxvnl")]
 position = Vector2(4352, -1232)
 
+[node name="vine_real2" parent="." instance=ExtResource("9_uxvnl")]
+position = Vector2(3840, -1088)
+
+[node name="vine_real3" parent="." instance=ExtResource("9_uxvnl")]
+position = Vector2(3672, -1096)
+
+[node name="vine_real4" parent="." instance=ExtResource("9_uxvnl")]
+position = Vector2(3488, -1088)
+
+[node name="vine_real5" parent="." instance=ExtResource("9_uxvnl")]
+position = Vector2(3280, -1088)
+
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
 [connection signal="body_entered" from="vine_real" to="Player" method="_on_vine_real_body_entered"]
