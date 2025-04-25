@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=16 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
 [ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
+[ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
 size = Vector2(1708, 1028)
@@ -122,5 +123,14 @@ the gorilla ability!
 Press Tab to pick up 
 and place blocks!"
 metadata/_edit_use_anchors_ = true
+
+[node name="vine_real" parent="." instance=ExtResource("11_ef85w")]
+position = Vector2(1288, 440)
+
+[node name="vine_real2" parent="." instance=ExtResource("11_ef85w")]
+position = Vector2(1040, 400)
+
+[node name="vine_real3" parent="." instance=ExtResource("11_ef85w")]
+position = Vector2(704, 344)
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]

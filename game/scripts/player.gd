@@ -65,14 +65,20 @@ func _physics_process(delta: float) -> void:
 			#VINE CODE
 	var vine_release = false
 	if vine_grabbed:
-		global_position = vine.global_position
+		position = vine.end_position  # Now we can access `end_position` properly
+		velocity = Vector2.ZERO
+		velocity.x = 0
+		velocity.y = 0 
 		if Input.is_action_just_pressed("ui_accept"):
+			vine.grabbed = false
 			vine_grabbed = false
 			vine = null
-			$GrabZone/VineTimer.start()
+			$vine_timer.start()
 			vine_release = true
-		else:
+			velocity.y = JUMP_VELOCITY
 			return
+		else:
+			velocity = Vector2.ZERO
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += _get_gravity() * delta * 1.5
@@ -172,12 +178,12 @@ func spawn_block(block_position):
 		world_node.add_child(new_block)
 		new_block.global_position = block_position
 		
-func _on_grab_zone_area_entered(area: Area2D) -> void:
-	if area.is_in_group("vine") and can_grab:
-		vine_grabbed = true
-		vine = area
-		can_grab = false
-		print("Vine!")
+#func _on_grab_zone_area_entered(area: Area2D) -> void:
+	#if area.is_in_group("vine") and can_grab:
+		#vine_grabbed = true
+		#vine = area
+		#can_grab = false
+		#print("Vine!")
 
 
 func _on_vine_timer_timeout() -> void:
@@ -193,3 +199,14 @@ func _on_gorilla_statue_body_entered(body: Node2D) -> void:
 #	Play animation/music
 	gorilla_unlocked = true
 	$"../gorilla_statue/gorilla_label".show()
+
+
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	print("Player entered the vine!")
+	if area.is_in_group("vine") and can_grab:
+		$vine_timer.start()
+		vine_grabbed = true
+		vine = area
+		can_grab = false
+		vine.grabbed = true
+		print("Vine grabbed")
