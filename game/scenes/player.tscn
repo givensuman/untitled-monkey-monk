@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://o4owcmqmbaxu"]
 
-[ext_resource type="Script" uid="uid://c6nhinynh7olu" path="res://game/scripts/player.gd" id="1_ai0b7"]
+[ext_resource type="Script" path="res://game/scripts/player.gd" id="1_ai0b7"]
 [ext_resource type="Texture2D" uid="uid://bdwl3rbrnx5xr" path="res://art/monkey-Sheet.png" id="2_fkr20"]
 [ext_resource type="AudioStream" uid="uid://b468dt0sepa12" path="res://sounds/fx/jump.mp3" id="3_u5gyh"]
 
@@ -123,13 +123,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_od4tg"]
 _data = {
-&"RESET": SubResource("Animation_uy5fi"),
-&"idle_left": SubResource("Animation_b6cxe"),
-&"idle_right": SubResource("Animation_nggnu"),
-&"jump_left": SubResource("Animation_fkr20"),
-&"jump_right": SubResource("Animation_o5wgc"),
-&"walk_left": SubResource("Animation_lvpx6"),
-&"walk_right": SubResource("Animation_u5gyh")
+"RESET": SubResource("Animation_uy5fi"),
+"idle_left": SubResource("Animation_b6cxe"),
+"idle_right": SubResource("Animation_nggnu"),
+"jump_left": SubResource("Animation_fkr20"),
+"jump_right": SubResource("Animation_o5wgc"),
+"walk_left": SubResource("Animation_lvpx6"),
+"walk_right": SubResource("Animation_u5gyh")
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
@@ -157,7 +157,7 @@ zoom = Vector2(3, 3)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
-&"": SubResource("AnimationLibrary_od4tg")
+"": SubResource("AnimationLibrary_od4tg")
 }
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]

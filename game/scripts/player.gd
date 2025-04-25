@@ -19,6 +19,7 @@ var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
+var gorilla_unlocked = false
 
 var last_checkpoint: Node = null
 
@@ -28,6 +29,8 @@ var world_node
 func _ready():
 	# Try to find the world node
 	world_node = get_tree().get_root().get_node("World")
+#	Hide gorilla statue text
+	$"../gorilla_statue/gorilla_label".hide()
 	# Add player group to both the player and its area
 	add_to_group("player")
 	$PlayerArea.add_to_group("player")
@@ -121,7 +124,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = direction * SPEED
 	
-	if Input.is_action_just_pressed("ui_focus_next"):
+	if Input.is_action_just_pressed("ui_focus_next") and gorilla_unlocked:
 		if held_block:
 			place_block()
 		else:
@@ -183,3 +186,10 @@ func _on_vine_timer_timeout() -> void:
 func _on_player_area_entered(area: Area2D) -> void:
 	if area.get_parent().name == "Spikes":
 		respawn()
+
+
+func _on_gorilla_statue_body_entered(body: Node2D) -> void:
+	print("gorilla ability!")
+#	Play animation/music
+	gorilla_unlocked = true
+	$"../gorilla_statue/gorilla_label".show()
