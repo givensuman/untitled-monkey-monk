@@ -32,7 +32,7 @@ func _ready():
 	add_to_group("player")
 	$PlayerArea.add_to_group("player")
 	# Set initial footstep sound
-	$WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
+	$Sounds/WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
 	# Store initial spawn position
 	spawn_position = global_position
 	# Connect area entered signal for spike detection
@@ -81,6 +81,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		velocity.y = 0 
 		if Input.is_action_just_pressed("ui_accept"):
+			$Sounds/Vine/Swing.play()
 			vine.grabbed = false
 			vine_grabbed = false
 			vine = null
@@ -101,7 +102,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):
 		velocity.y = JUMP_VELOCITY
-		$JumpSound.play()
+		$Sounds/JumpSound.play()
 
 		can_dblJump = true
 	
@@ -113,16 +114,16 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("ui_accept") and can_dblJump:
 		velocity.y = JUMP_VELOCITY
-		$JumpSound.play()
+		$Sounds/JumpSound.play()
 		can_dblJump = false
 		
 	# Get the input direction and handle the movement/deceleration.
 	if direction:
 		velocity.x = direction * SPEED
 		
-		if is_on_floor() and $WalkSound/Timer.is_stopped():
-			$WalkSound/Sound.play()
-			$WalkSound/Timer.start()
+		if is_on_floor() and $Sounds/WalkSound/Timer.is_stopped():
+			$Sounds/WalkSound/Sound.play()
+			$Sounds/WalkSound/Timer.start()
 	
 	# Handle animations based on state and movement
 	if held_block:
@@ -214,4 +215,5 @@ func _on_grab_area_area_entered(area: Area2D) -> void:
 		vine = area
 		can_grab = false
 		vine.grabbed = true
+		$Sounds/Vine/Grab.play()
 		print("Vine grabbed")
