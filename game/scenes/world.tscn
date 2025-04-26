@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
-[ext_resource type="PackedScene" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
-[ext_resource type="PackedScene" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
+[ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
+[ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
 [ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
 [ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
-[ext_resource type="PackedScene" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
+[ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -35,7 +35,7 @@ autoplay = true
 [node name="TransitionPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(3346, 1345)
+position = Vector2(4767, 1374)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2

@@ -123,27 +123,24 @@ func _physics_process(delta: float) -> void:
 		if is_on_floor() and $WalkSound/Timer.is_stopped():
 			$WalkSound/Sound.play()
 			$WalkSound/Timer.start()
-		
-		if velocity.x > 0 and is_on_floor():
-			%AnimationPlayer.play("walk_right")
-			last_direction = "right"
-		elif velocity.x < 0 and is_on_floor():
-			%AnimationPlayer.play("walk_left")
-			last_direction = "left"
-	else:
-		if last_direction == "right":
-			%AnimationPlayer.play("idle_right")
-		else:
-			%AnimationPlayer.play("idle_left")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	# Handle animations based on state and movement
 	if held_block:
-		if velocity.x > 0:
-			%AnimationPlayer.play("lift_walk_right")
-		elif velocity.x < 0:
-			%AnimationPlayer.play("lift_walk_left")
 		velocity.x = direction * SPEED * .5
+		if direction != 0:
+			last_direction = "right" if direction > 0 else "left"
+			%AnimationPlayer.play("lift_walk_" + last_direction)
+		else:
+			%AnimationPlayer.stop()
+			%AnimationPlayer.play("lift_walk_" + last_direction)
+			%AnimationPlayer.pause()
 	else:
 		velocity.x = direction * SPEED
+		if direction != 0 and is_on_floor():
+			last_direction = "right" if direction > 0 else "left"
+			%AnimationPlayer.play("walk_" + last_direction)
+		elif is_on_floor():
+			%AnimationPlayer.play("idle_" + last_direction)
 	
 	if Input.is_action_just_pressed("ui_focus_next") and gorilla_unlocked:
 		if held_block:
