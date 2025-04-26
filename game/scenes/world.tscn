@@ -5,12 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
-[ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
-[ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
+[ext_resource type="PackedScene" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
+[ext_resource type="PackedScene" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
 [ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
-[ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
+[ext_resource type="PackedScene" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
-[ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
+[ext_resource type="PackedScene" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
 size = Vector2(2102, 1544)
@@ -22,7 +22,7 @@ size = Vector2(2712, 1624)
 size = Vector2(50, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ruins"]
-size = Vector2(2880, 1080)
+size = Vector2(4426, 1372)
 
 [node name="World" type="Node2D"]
 
@@ -58,7 +58,7 @@ position = Vector2(1363, 382)
 shape = SubResource("RectangleShape2D_temple")
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(59, 698)
+position = Vector2(1772, -110)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -76,38 +76,101 @@ script = ExtResource("9_xkw3f")
 zone_name = "ruins"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/RuinsMusicZone"]
-position = Vector2(1512, 548)
+position = Vector2(2285, 402)
 shape = SubResource("RectangleShape2D_ruins")
 
-[node name="Spikes" parent="Ruins/RuinsMusicZone" instance=ExtResource("7_y08k3")]
-position = Vector2(988, 992)
+[node name="Spikes" type="Node" parent="Ruins"]
 
-[node name="Block" parent="." instance=ExtResource("6_uu6rj")]
+[node name="Spikes" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(6592, 556)
+
+[node name="Spikes3" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(6781, 556)
+
+[node name="Spikes4" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(6876, 556)
+
+[node name="Spikes5" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(6971, 557)
+
+[node name="Spikes6" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(7066, 556)
+
+[node name="Spikes7" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(7154, 557)
+
+[node name="Spikes2" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(6688, 555)
+
+[node name="Spikes8" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(7286, 347)
+rotation = 3.13693
+
+[node name="Spikes9" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(3620, 1399)
+
+[node name="Spikes10" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(3930, 1399)
+
+[node name="Spikes11" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(5987, 653)
+
+[node name="Spikes12" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(6087, 558)
+
+[node name="Spikes13" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(5886, 440)
+rotation = -3.11242
+scale = Vector2(1, 1)
+
+[node name="Spikes14" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(6064, 347)
+rotation = -3.08278
+
+[node name="Spikes15" parent="Ruins/Spikes" instance=ExtResource("7_y08k3")]
+position = Vector2(5957, 442)
+rotation = -3.12814
+
+[node name="Blocks" type="Node" parent="Ruins"]
+
+[node name="Block" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
 position = Vector2(4666, 1392)
 
-[node name="Block2" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(5066, 1086)
+[node name="Block2" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
+position = Vector2(5135, 1085)
 
-[node name="Block3" parent="." instance=ExtResource("6_uu6rj")]
+[node name="Block3" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
 position = Vector2(5205, 1157)
 
-[node name="Block4" parent="." instance=ExtResource("6_uu6rj")]
+[node name="Block4" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
 position = Vector2(5065, 1157)
 
-[node name="Block5" parent="." instance=ExtResource("6_uu6rj")]
+[node name="Block5" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
 position = Vector2(4441, 1320)
 
-[node name="Block6" parent="." instance=ExtResource("6_uu6rj")]
+[node name="Block6" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
 position = Vector2(5135, 1157)
 
-[node name="Block7" parent="." instance=ExtResource("6_uu6rj")]
+[node name="Block7" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
 position = Vector2(4441, 1391)
+
+[node name="Block8" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
+position = Vector2(7288, 442)
+
+[node name="Block9" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
+position = Vector2(6429, 440)
+
+[node name="Block10" parent="Ruins/Blocks" instance=ExtResource("6_uu6rj")]
+position = Vector2(6429, 369)
 
 [node name="TempleCheckpoint" parent="." instance=ExtResource("9_nepmf")]
 position = Vector2(1790, -84)
 
 [node name="RuinsCheckpoint" parent="." instance=ExtResource("9_nepmf")]
-position = Vector2(3284, 1351)
+position = Vector2(3433, 1354)
+
+[node name="RuinsCheckpoint2" parent="." instance=ExtResource("9_nepmf")]
+position = Vector2(5760, 718)
 
 [node name="gorilla_statue" parent="." instance=ExtResource("10_5lbqv")]
 position = Vector2(3152, 1336)

@@ -19,7 +19,7 @@ var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
-var gorilla_unlocked = false
+var gorilla_unlocked = true
 
 var last_checkpoint: Node = null
 # Reference to the world node for block placement
