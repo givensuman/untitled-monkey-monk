@@ -12,6 +12,7 @@ var pickup_offset = Vector2(0, -50)  # Offset when held
 var grid_size = 64  # Size for grid snapping (based on block size)
 var placement_distance = 100  # Distance in front of player to place block
 var ground_level = 600  # Default ground level, will be adjusted based on physics
+var initial_position: Vector2  # Store initial position for respawn
 
 # References
 @onready var outline = $Outline
@@ -22,9 +23,10 @@ var ground_level = 600  # Default ground level, will be adjusted based on physic
 @onready var place_sound = $PlaceDownSound
 
 func _ready():
-	# Store original collision properties
+	# Store original collision properties and position
 	original_collision_layer = collision_layer
 	original_collision_mask = collision_mask
+	initial_position = global_position
 	
 	# Disable indicators initially
 	if outline:
@@ -293,3 +295,32 @@ func has_block_on_top():
 			return true
 	
 	return false
+
+# Add new function to reset block position
+func reset_to_initial_position():
+	if is_picked_up:
+		# If currently being held, remove from player
+		get_parent().remove_child(self)
+		var world = get_tree().get_root().get_node("World")
+		world.add_child(self)
+		is_picked_up = false
+	
+	# Reset physics state
+	freeze = false
+	collision_layer = original_collision_layer
+	collision_mask = original_collision_mask
+	
+	# Reset position and velocity
+	global_position = initial_position
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
+	
+	# Reset visuals
+	if outline:
+		outline.visible = false
+	if placement_preview:
+		placement_preview.visible = false
+	if ground_indicator:
+		ground_indicator.visible = false
+	if pickup_indicator:
+		pickup_indicator.visible = false

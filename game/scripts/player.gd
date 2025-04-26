@@ -44,6 +44,17 @@ func _ready():
 	last_checkpoint = get_tree().get_root().get_node("World/TempleCheckpoint")
 
 func respawn():
+	# Drop any held block first
+	if held_block:
+		held_block.place_down()
+		held_block = null
+	
+	# Reset all blocks in the scene
+	var blocks = get_tree().get_nodes_in_group("pickable_blocks")
+	for block in blocks:
+		block.reset_to_initial_position()
+	
+	# Reset player position and velocity
 	global_position = spawn_position
 	velocity = Vector2.ZERO
 
