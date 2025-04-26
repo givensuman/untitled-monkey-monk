@@ -41,7 +41,7 @@ func _ready():
 	$PlayerArea.area_entered.connect(_on_player_area_entered)
 	# Set initial checkpoint
 	# TODO: Change to tutorial once that's merged
-	last_checkpoint = get_tree().get_root().get_node("World/TempleCheckpoint")
+	last_checkpoint = get_tree().get_root().get_node("Tutorial/Checkpoint")
 
 func respawn():
 	# Drop any held block first
