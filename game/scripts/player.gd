@@ -19,15 +19,17 @@ var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
+var gorilla_unlocked = false
 
 var last_checkpoint: Node = null
-
 # Reference to the world node for block placement
 var world_node
 
 func _ready():
 	# Try to find the world node
 	world_node = get_tree().get_root().get_node("World")
+#	Hide gorilla statue text
+	$"../gorilla_statue/gorilla_label".hide()
 	# Add player group to both the player and its area
 	add_to_group("player")
 	$PlayerArea.add_to_group("player")
@@ -62,14 +64,20 @@ func _physics_process(delta: float) -> void:
 			#VINE CODE
 	var vine_release = false
 	if vine_grabbed:
-		global_position = vine.global_position
+		position = vine.end_position  # Now we can access `end_position` properly
+		velocity = Vector2.ZERO
+		velocity.x = 0
+		velocity.y = 0 
 		if Input.is_action_just_pressed("ui_accept"):
+			vine.grabbed = false
 			vine_grabbed = false
 			vine = null
-			$GrabZone/VineTimer.start()
+			$vine_timer.start()
 			vine_release = true
-		else:
+			velocity.y = JUMP_VELOCITY
 			return
+		else:
+			velocity = Vector2.ZERO
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += _get_gravity() * delta * 1.5
@@ -117,11 +125,15 @@ func _physics_process(delta: float) -> void:
 			%AnimationPlayer.play("idle_left")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	if held_block:
+		if velocity.x > 0:
+			%AnimationPlayer.play("lift_walk_right")
+		elif velocity.x < 0:
+			%AnimationPlayer.play("lift_walk_left")
 		velocity.x = direction * SPEED * .5
 	else:
 		velocity.x = direction * SPEED
 	
-	if Input.is_action_just_pressed("ui_focus_next"):
+	if Input.is_action_just_pressed("ui_focus_next") and gorilla_unlocked:
 		if held_block:
 			place_block()
 		else:
@@ -169,12 +181,12 @@ func spawn_block(block_position):
 		world_node.add_child(new_block)
 		new_block.global_position = block_position
 		
-func _on_grab_zone_area_entered(area: Area2D) -> void:
-	if area.is_in_group("vine") and can_grab:
-		vine_grabbed = true
-		vine = area
-		can_grab = false
-		print("Vine!")
+#func _on_grab_zone_area_entered(area: Area2D) -> void:
+	#if area.is_in_group("vine") and can_grab:
+		#vine_grabbed = true
+		#vine = area
+		#can_grab = false
+		#print("Vine!")
 
 
 func _on_vine_timer_timeout() -> void:
@@ -183,3 +195,21 @@ func _on_vine_timer_timeout() -> void:
 func _on_player_area_entered(area: Area2D) -> void:
 	if area.get_parent().name == "Spikes":
 		respawn()
+
+
+func _on_gorilla_statue_body_entered(body: Node2D) -> void:
+	print("gorilla ability!")
+#	Play animation/music
+	gorilla_unlocked = true
+	$"../gorilla_statue/gorilla_label".show()
+
+
+func _on_grab_area_area_entered(area: Area2D) -> void:
+	print("Player entered the vine!")
+	if area.is_in_group("vine") and can_grab:
+		$vine_timer.start()
+		vine_grabbed = true
+		vine = area
+		can_grab = false
+		vine.grabbed = true
+		print("Vine grabbed")

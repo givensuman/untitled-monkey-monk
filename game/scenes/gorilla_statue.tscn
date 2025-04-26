@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfp5it4ufumbw"]
+
+[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_e0f6n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pntr3"]
+size = Vector2(140, 147)
+
+[node name="gorilla_statue" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 5.00001)
+scale = Vector2(1.14062, 1.16007)
+texture = ExtResource("1_e0f6n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 5.5)
+shape = SubResource("RectangleShape2D_pntr3")
