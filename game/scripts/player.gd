@@ -19,7 +19,7 @@ var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
-var gorilla_unlocked = true
+var gorilla_unlocked = false
 
 var last_checkpoint: Node = null
 # Reference to the world node for block placement
@@ -28,8 +28,6 @@ var world_node
 func _ready():
 	# Try to find the world node
 	world_node = get_tree().get_root().get_node("World")
-#	Hide gorilla statue text
-	$"../gorilla_statue/gorilla_label".hide()
 	# Add player group to both the player and its area
 	add_to_group("player")
 	$PlayerArea.add_to_group("player")
@@ -40,8 +38,11 @@ func _ready():
 	# Connect area entered signal for spike detection
 	$PlayerArea.area_entered.connect(_on_player_area_entered)
 	# Set initial checkpoint
-	# TODO: Change to tutorial once that's merged
-	last_checkpoint = get_tree().get_root().get_node("Tutorial/Checkpoint")
+	last_checkpoint = get_tree().get_root().get_node("World/Tutorial/Checkpoint")
+
+# Called when the gorilla ability is unlocked
+func _on_gorilla_ability_unlocked() -> void:
+	gorilla_unlocked = true
 
 func respawn():
 	# Drop any held block first
@@ -206,13 +207,6 @@ func _on_vine_timer_timeout() -> void:
 func _on_player_area_entered(area: Area2D) -> void:
 	if area.get_parent().name == "Spikes":
 		respawn()
-
-
-func _on_gorilla_statue_body_entered(body: Node2D) -> void:
-	print("gorilla ability!")
-#	Play animation/music
-	gorilla_unlocked = true
-	$"../gorilla_statue/gorilla_label".show()
 
 
 func _on_grab_area_area_entered(area: Area2D) -> void:
