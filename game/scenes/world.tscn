@@ -35,7 +35,7 @@ autoplay = true
 [node name="TransitionPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(1384, 707)
+position = Vector2(680, 3)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
