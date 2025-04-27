@@ -8,7 +8,6 @@ const RANDOM_VOLUME_AMOUNT = 5
 const RANDOM_VOLUME_TIMEOUT = 0.1
 
 var spawn_position: Vector2
-var can_dblJump = false
 var button = "res://button.tscn"
 
 var last_direction = "right"
@@ -19,7 +18,7 @@ var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
-var gorilla_unlocked = false
+var gorilla_unlocked = true
 
 var last_checkpoint: Node = null
 # Reference to the world node for block placement
@@ -94,8 +93,6 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += _get_gravity() * delta * 1.5
-	if is_on_floor(): 
-		can_dblJump = false
 	
 	var direction := Input.get_axis("walk_left", "walk_right")
 	
@@ -103,19 +100,12 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):
 		velocity.y = JUMP_VELOCITY
 		$Sounds/JumpSound.play()
-
-		can_dblJump = true
 	
 	if not is_on_floor():
 		if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
 			%AnimationPlayer.play("jump_right")
 		elif velocity.x < 0: 
 			%AnimationPlayer.play("jump_left")
-
-	if Input.is_action_just_pressed("ui_accept") and can_dblJump:
-		velocity.y = JUMP_VELOCITY
-		$Sounds/JumpSound.play()
-		can_dblJump = false
 		
 	# Get the input direction and handle the movement/deceleration.
 	if direction:
