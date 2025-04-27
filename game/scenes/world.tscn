@@ -35,6 +35,7 @@ autoplay = true
 [node name="TransitionPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
+z_index = 1
 position = Vector2(680, 3)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
@@ -45,7 +46,7 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_player")
 
 [node name="Tutorial" parent="." instance=ExtResource("2_fy24a")]
-z_index = -3
+z_index = -1
 position = Vector2(2, -40)
 
 [node name="TutorialMusicZone" type="Area2D" parent="Tutorial"]
@@ -62,6 +63,7 @@ shape = SubResource("RectangleShape2D_tutorial")
 position = Vector2(53, 795)
 
 [node name="RegTemple" parent="." instance=ExtResource("4_6pf46")]
+z_index = -1
 position = Vector2(1681, -802)
 
 [node name="TempleAmbienceZone" type="Area2D" parent="RegTemple"]
