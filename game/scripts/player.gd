@@ -100,12 +100,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):
 		velocity.y = JUMP_VELOCITY
 		$Sounds/JumpSound.play()
-	
-	if not is_on_floor():
-		if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
-			%AnimationPlayer.play("jump_right")
-		elif velocity.x < 0: 
-			%AnimationPlayer.play("jump_left")
+
 		
 	# Get the input direction and handle the movement/deceleration.
 	if direction:
@@ -130,6 +125,11 @@ func _physics_process(delta: float) -> void:
 		if direction != 0 and is_on_floor():
 			last_direction = "right" if direction > 0 else "left"
 			%AnimationPlayer.play("walk_" + last_direction)
+		if not is_on_floor():
+			if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
+				%AnimationPlayer.play("jump_right")
+		elif velocity.x < 0: 
+			%AnimationPlayer.play("jump_left")
 		elif is_on_floor():
 			%AnimationPlayer.play("idle_" + last_direction)
 	
