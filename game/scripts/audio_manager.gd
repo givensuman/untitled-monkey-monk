@@ -33,6 +33,19 @@ func _on_zone_changed(zone_name: String):
 	if zone_name == current_zone:
 		return
 		
+	# For tutorial zone, check if tutorial music is already playing somewhere
+	if zone_name == "tutorial":
+		var tree = get_tree()
+		var title_screen = tree.get_root().get_node_or_null("TitleScreen")
+		if title_screen and title_screen.has_node("MusicPlayer"):
+			var title_music = title_screen.get_node("MusicPlayer")
+			if title_music.playing and title_music.stream == audio_streams["tutorial"]:
+				# Tutorial music is already playing from title screen, just update footsteps
+				if zone_name in footstep_sounds:
+					update_player_footsteps(zone_name)
+				current_zone = zone_name
+				return
+	
 	current_zone = zone_name
 	
 	if zone_name in audio_streams:
