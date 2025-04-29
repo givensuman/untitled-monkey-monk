@@ -150,8 +150,8 @@ func _physics_process(delta: float) -> void:
 		elif not is_on_floor():
 			if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
 				%AnimationPlayer.play("jump_right")
-		elif velocity.x < 0: 
-			%AnimationPlayer.play("jump_left")
+			elif velocity.x < 0 and %AnimationPlayer.assigned_animation != "jump_left": 
+				%AnimationPlayer.play("jump_left")
 		elif is_on_floor():
 			%AnimationPlayer.play("idle_" + last_direction)
 	
