@@ -1,17 +1,22 @@
-[gd_scene load_steps=17 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=22 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
+[ext_resource type="PackedScene" uid="uid://cvl3d5kdkn24r" path="res://game/scenes/blue_altar.tscn" id="7_7m8jt"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
+[ext_resource type="PackedScene" uid="uid://bddfsnlgnoxm2" path="res://game/scenes/workshop.tscn" id="8_621cg"]
+[ext_resource type="PackedScene" uid="uid://cx0y33chwy5dk" path="res://game/scenes/green_altar.tscn" id="8_cvjtv"]
 [ext_resource type="PackedScene" uid="uid://lsfa41bqggar" path="res://game/scenes/viney.tscn" id="9_ifrqp"]
 [ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
+[ext_resource type="PackedScene" uid="uid://bheeoojpsyxjo" path="res://game/scenes/purple_altar.tscn" id="9_twmbl"]
 [ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
 [ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 [ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
 [ext_resource type="PackedScene" uid="uid://dmscwysqbrrvk" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
 [ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
+[ext_resource type="PackedScene" uid="uid://bk6yboi6dhknr" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -37,7 +42,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(106, 805)
+position = Vector2(2904, -387)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -93,6 +98,18 @@ zone_name = "temple"
 position = Vector2(4088, -382)
 shape = SubResource("RectangleShape2D_temple")
 
+[node name="BlueAltar" parent="." instance=ExtResource("7_7m8jt")]
+position = Vector2(3209, -124)
+
+[node name="GreenAltar" parent="." instance=ExtResource("8_cvjtv")]
+position = Vector2(3272, -124)
+
+[node name="PurpleAltar" parent="." instance=ExtResource("9_twmbl")]
+position = Vector2(3333, -124)
+
+[node name="Altar_Door" parent="." instance=ExtResource("14_6atb8")]
+position = Vector2(3503, -130)
+
 [node name="Ruins" parent="." instance=ExtResource("7_wkjk4")]
 z_index = -1
 position = Vector2(3805, 501)
@@ -113,6 +130,9 @@ zone_name = "ruins"
 position = Vector2(4523, -935)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ruins")
+
+[node name="Workshop" parent="." instance=ExtResource("8_621cg")]
+position = Vector2(13633, -1225)
 
 [node name="vine_real" parent="." instance=ExtResource("11_ef85w")]
 position = Vector2(1288, 440)
@@ -140,7 +160,7 @@ Press Tab to pick up
 and place blocks!"
 
 [node name="jetpack_statue" parent="." instance=ExtResource("13_n5tpk")]
-position = Vector2(5216, 1464)
+position = Vector2(15593, -384)
 
 [node name="jetpack_label" type="Label" parent="jetpack_statue"]
 offset_left = -80.0
@@ -152,7 +172,7 @@ the jetpack ability!
 Hold space to fly!"
 
 [node name="spider_statue" parent="." instance=ExtResource("12_05mfm")]
-position = Vector2(5720, 1456)
+position = Vector2(8677, -388)
 
 [node name="spider_label" type="Label" parent="spider_statue"]
 offset_left = -80.0

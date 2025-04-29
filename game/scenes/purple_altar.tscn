@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://bheeoojpsyxjo"]
+
+[ext_resource type="Texture2D" uid="uid://5hg7maqf27g4" path="res://art/altar_purple-Sheet.png" id="1_stfua"]
+
+[sub_resource type="Animation" id="Animation_eeewo"]
+resource_name = "Purple_Banana_Altar"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_38wdi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c85ub"]
+_data = {
+&"Purple_Banana_Altar": SubResource("Animation_eeewo"),
+&"RESET": SubResource("Animation_38wdi")
+}
+
+[node name="PurpleAltar" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+scale = Vector2(3, 3)
+texture = ExtResource("1_stfua")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c85ub")
+}

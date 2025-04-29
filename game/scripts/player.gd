@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
-const FLY_SPEED = 1800
+const FLY_SPEED = 3000
 
 const RANDOM_VOLUME_AMOUNT = 5
 const RANDOM_VOLUME_TIMEOUT = 0.1
