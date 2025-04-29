@@ -221,7 +221,7 @@ func _on_player_area_entered(area: Area2D) -> void:
 
 func _on_grab_area_area_entered(area: Area2D) -> void:
 	print("Player entered the vine!")
-	if area.is_in_group("vine") and can_grab:
+	if area.is_in_group("vine") and can_grab and spider_unlocked:
 		$vine_timer.start()
 		vine_grabbed = true
 		vine = area
