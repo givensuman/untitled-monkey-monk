@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 			#VINE CODE
 	var vine_release = false
 	if vine_grabbed:
+		%AnimationPlayer.play("vine_swinging")
 		position = vine.end_position  # Now we can access `end_position` properly
 		velocity = Vector2.ZERO
 		velocity.x = 0

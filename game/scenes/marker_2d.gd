@@ -48,12 +48,12 @@ func process_velocity(delta:float)->void:
 	
 	end_position = pivot_point + Vector2(arm_length*sin(angle), arm_length*cos(angle))
 	
-	var sprite_height = vine_sprite.texture.get_height()
+	var sprite_height = vine_sprite.texture.get_height() 
 	
-	vine_sprite.global_position = end_position - sprite_height / 2 * Vector2(sin(angle), cos(angle))
+	vine_sprite.global_position = (end_position - sprite_height / 2 * Vector2(sin(angle), cos(angle))) + Vector2(20,-20)
 	vine_sprite.rotation = -angle 
 	
-	vine_collision.global_position = vine_sprite.global_position
+	vine_collision.global_position = vine_sprite.global_position + Vector2(-20,20)
 	vine_collision.rotation = vine_sprite.rotation
 
 func add_angular_velocity(force:float)->void:
@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 	if vineArea.grabbed:
 		game_input()	
 	process_velocity(delta)
-	queue_redraw()
-func _draw() -> void:
-	draw_line(Vector2.ZERO, end_position - pivot_point, Color.WHITE, 1.0, false)
-	draw_circle(end_position-pivot_point, 3.0, Color.RED)
+	#queue_redraw()
+#func _draw() -> void:
+	#draw_line(Vector2.ZERO, end_position - pivot_point, Color.WHITE, 1.0, false)
+	#draw_circle(end_position-pivot_point, 3.0, Color.RED)
