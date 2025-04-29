@@ -3,22 +3,29 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
+const FLY_SPEED = 1800
 
 const RANDOM_VOLUME_AMOUNT = 5
 const RANDOM_VOLUME_TIMEOUT = 0.1
 
+var spawn_position: Vector2
 var can_dblJump = false
 var button = "res://button.tscn"
+var is_flying = false
 
 var last_direction = "right"
-var held_block = null
+var held_block: Node = null
 var interact_range = 100.0  # How far the player can reach to grab blocks
+
 var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
-var player = null
 var can_grab = true
 var gorilla_unlocked = false
+var spider_unlocked = false
+var jetpack_unlocked = false
+
+var last_checkpoint: Node = null
 
 # Reference to the world node for block placement
 var world_node
@@ -26,19 +33,43 @@ var world_node
 func _ready():
 	# Try to find the world node
 	world_node = get_tree().get_root().get_node("World")
+#	Hide statue text
+	$"../gorilla_statue/gorilla_label".hide()
+	$"../spider_statue/Label".hide()
+	$"../jetpack_statue/Label".hide()
+	
+	
 	# Add player group to both the player and its area
 	add_to_group("player")
 	$PlayerArea.add_to_group("player")
 	# Set initial footstep sound
 	$WalkSound/Sound.stream = preload("res://sounds/fx/walk_dirt.ogg")
-	$"../gorilla_label".hide()
-	var vines = get_tree().get_nodes_in_group("vine")
+	# Store initial spawn position
+	spawn_position = global_position
+	# Connect area entered signal for spike detection
+	$PlayerArea.area_entered.connect(_on_player_area_entered)
+	# Set initial checkpoint
+	# TODO: Change to tutorial once that's merged
+	last_checkpoint = get_tree().get_root().get_node("World/TempleCheckpoint")
+
+func respawn():
+	global_position = spawn_position
+	velocity = Vector2.ZERO
+
+func get_last_checkpoint():
+	return last_checkpoint
+
+func update_checkpoint(checkpoint: Node) -> bool:
+	if checkpoint != last_checkpoint:
+		last_checkpoint = checkpoint
+		spawn_position = checkpoint.global_position
+		return true
+	return false
 
 func _get_gravity() -> Vector2:
 	return Vector2(0, 980)
 
 func _physics_process(delta: float) -> void:
-	#print(velocity)
 			#VINE CODE
 	var vine_release = false
 	if vine_grabbed:
@@ -57,7 +88,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity = Vector2.ZERO
 	# Add the gravity.
-	else:
+	if not is_flying:
 		if not is_on_floor():
 			velocity += _get_gravity() * delta * 1.5
 		if is_on_floor(): 
@@ -65,12 +96,20 @@ func _physics_process(delta: float) -> void:
 	
 	var direction := Input.get_axis("walk_left", "walk_right")
 	
+	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):
 		velocity.y = JUMP_VELOCITY
 		$JumpSound.play()
-
 		can_dblJump = true
+	
+	#jetpack code
+	if not is_on_floor() and Input.is_action_pressed("ui_accept") and jetpack_unlocked:
+		is_flying = true
+		velocity.y = lerp(velocity.y, 0.0, 0.1)
+		velocity.y -= FLY_SPEED * delta
+	else:
+		is_flying = false
 	
 	if not is_on_floor():
 		if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
@@ -150,49 +189,55 @@ func place_block():
 	held_block = null
 
 # Spawn a new block (for testing or adding blocks to the world)
-func spawn_block(position):
+func spawn_block(block_position):
 	if world_node:
 		var new_block = block_scene.instantiate()
 		world_node.add_child(new_block)
-		new_block.global_position = position
+		new_block.global_position = block_position
 		
-func _on_grab_zone_area_entered(area: Area2D) -> void:
-	print('Area entered!')
-	if area.is_in_group("vine") and can_grab:
-		vine_grabbed = true
-		vine = area
-		can_grab = false
-		print("Vine grabbed!")
+#func _on_grab_zone_area_entered(area: Area2D) -> void:
+	#if area.is_in_group("vine") and can_grab:
+		#vine_grabbed = true
+		#vine = area
+		#can_grab = false
+		#print("Vine!")
 
 
 func _on_vine_timer_timeout() -> void:
 	can_grab = true
+
+func _on_player_area_entered(area: Area2D) -> void:
+	if area.get_parent().name == "Spikes":
+		respawn()
 
 
 func _on_gorilla_statue_body_entered(body: Node2D) -> void:
 	print("gorilla ability!")
 #	Play animation/music
 	gorilla_unlocked = true
-	$"../gorilla_label".show()
-
-
-#func _on_vine_real_body_entered(body: Node2D) -> void:
-	#print("Player entered the vine!")
-	#if body.is_in_group("player") and can_grab:
-		#$vine_timer.start()
-		#vine_grabbed = true
-		#vine = $"../vine_real"
-		#print(body.name)
-		#can_grab = false
-		#print("Vine grabbed!")
+	$"../gorilla_statue/gorilla_label".show()
 
 
 func _on_grab_area_area_entered(area: Area2D) -> void:
-	print("Player entered the vine!")
-	if area.is_in_group("vine") and can_grab:
+	if area.is_in_group("vine") and can_grab and spider_unlocked:
 		$vine_timer.start()
 		vine_grabbed = true
 		vine = area
 		can_grab = false
 		vine.grabbed = true
 		print("Vine grabbed")
+
+
+func _on_spider_statue_body_entered(body: Node2D) -> void:
+	print("spider ability!")
+	#Play animation/music
+	spider_unlocked = true
+	$"../spider_statue/Label".show()
+	
+
+
+func _on_jetpack_statue_body_entered(body: Node2D) -> void:
+	print("jetpack ability!")
+	#play animation/music
+	jetpack_unlocked = true
+	$"../jetpack_statue/Label".show()

@@ -1,15 +1,18 @@
-[gd_scene load_steps=15 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=18 format=3 uid="uid://6lvhxowtgj46"]
 
-[ext_resource type="Script" path="res://game/scenes/world.gd" id="1_xlvax"]
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="6_uu6rj"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
-[ext_resource type="PackedScene" uid="uid://c8pdfnrp0y6ia" path="res://game/scenes/gorilla_statue.tscn" id="8_cedby"]
-[ext_resource type="PackedScene" uid="uid://o1cjensesrav" path="res://vine_real.tscn" id="9_uxvnl"]
+[ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="7_y08k3"]
+[ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
 [ext_resource type="Script" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
+[ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
+[ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
+[ext_resource type="PackedScene" uid="uid://bf6s1p5ubsvmd" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
+[ext_resource type="PackedScene" uid="uid://b1ypbvn8lrf8o" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
 size = Vector2(1708, 1028)
@@ -17,15 +20,13 @@ size = Vector2(1708, 1028)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_temple"]
 size = Vector2(2712, 1624)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(50, 50)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ruins"]
 size = Vector2(2880, 1080)
 
-[sub_resource type="LabelSettings" id="LabelSettings_enef0"]
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-
 [node name="World" type="Node2D"]
-script = ExtResource("1_xlvax")
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("10_audio")
@@ -36,7 +37,7 @@ autoplay = true
 [node name="TransitionPlayer" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="tutorial" parent="." instance=ExtResource("2_fy24a")]
-position = Vector2(4, -19)
+position = Vector2(2, -40)
 
 [node name="TutorialMusicZone" type="Area2D" parent="tutorial"]
 position = Vector2(-4, 19)
@@ -55,22 +56,19 @@ script = ExtResource("9_xkw3f")
 zone_name = "temple"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RegTemple/TempleAmbienceZone"]
-position = Vector2(1367, 354)
+visible = false
+position = Vector2(1363, 382)
 shape = SubResource("RectangleShape2D_temple")
 
-[node name="gorilla_statue" parent="." instance=ExtResource("8_cedby")]
-position = Vector2(3144, 1352)
-script = null
-
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
-position = Vector2(3928, -896)
+position = Vector2(59, 698)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="Block" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4704, 1381)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/PlayerArea"]
+shape = SubResource("RectangleShape2D_player")
 
 [node name="Ruins" parent="." instance=ExtResource("7_wkjk4")]
 z_index = -1
@@ -84,49 +82,84 @@ zone_name = "ruins"
 position = Vector2(1512, 548)
 shape = SubResource("RectangleShape2D_ruins")
 
+[node name="Spikes" parent="Ruins/RuinsMusicZone" instance=ExtResource("7_y08k3")]
+position = Vector2(988, 992)
+
+[node name="Block" parent="." instance=ExtResource("6_uu6rj")]
+position = Vector2(4666, 1392)
+
 [node name="Block2" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(5223, 1063)
+position = Vector2(5066, 1086)
 
 [node name="Block3" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(5312, 1065)
+position = Vector2(5205, 1157)
 
 [node name="Block4" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(5221, 1140)
+position = Vector2(5065, 1157)
 
 [node name="Block5" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4418, 1271)
+position = Vector2(4441, 1320)
 
 [node name="Block6" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(5307, 1141)
+position = Vector2(5135, 1157)
 
 [node name="Block7" parent="." instance=ExtResource("6_uu6rj")]
-position = Vector2(4423, 1371)
+position = Vector2(4441, 1391)
 
-[node name="gorilla_label" type="Label" parent="."]
-offset_left = 3072.0
-offset_top = 1192.0
-offset_right = 3241.0
-offset_bottom = 1293.0
+[node name="TempleCheckpoint" parent="." instance=ExtResource("9_nepmf")]
+position = Vector2(1790, -84)
+
+[node name="RuinsCheckpoint" parent="." instance=ExtResource("9_nepmf")]
+position = Vector2(3284, 1351)
+
+[node name="gorilla_statue" parent="." instance=ExtResource("10_5lbqv")]
+position = Vector2(3152, 1336)
+
+[node name="gorilla_label" type="Label" parent="gorilla_statue"]
+offset_left = -72.0
+offset_top = -152.0
+offset_right = 83.0
+offset_bottom = -51.0
 text = "You have unlocked
- the gorilla ability!
-Now you can pick
- up blocks using Tab"
-label_settings = SubResource("LabelSettings_enef0")
+the gorilla ability! 
+Press Tab to pick up 
+and place blocks!"
+metadata/_edit_use_anchors_ = true
 
-[node name="vine_real" parent="." instance=ExtResource("9_uxvnl")]
-position = Vector2(4352, -1232)
+[node name="vine_real" parent="." instance=ExtResource("11_ef85w")]
+position = Vector2(1288, 440)
 
-[node name="vine_real2" parent="." instance=ExtResource("9_uxvnl")]
-position = Vector2(3840, -1088)
+[node name="vine_real2" parent="." instance=ExtResource("11_ef85w")]
+position = Vector2(1040, 400)
 
-[node name="vine_real3" parent="." instance=ExtResource("9_uxvnl")]
-position = Vector2(3672, -1096)
+[node name="vine_real3" parent="." instance=ExtResource("11_ef85w")]
+position = Vector2(704, 344)
 
-[node name="vine_real4" parent="." instance=ExtResource("9_uxvnl")]
-position = Vector2(3488, -1088)
+[node name="spider_statue" parent="." instance=ExtResource("12_05mfm")]
+position = Vector2(1464, 680)
 
-[node name="vine_real5" parent="." instance=ExtResource("9_uxvnl")]
-position = Vector2(3280, -1088)
+[node name="Label" type="Label" parent="spider_statue"]
+offset_left = -72.0
+offset_top = -128.0
+offset_right = 99.0
+offset_bottom = -27.0
+text = "You have unlocked
+the spider ability!
+You can now swing 
+on vines!"
+
+[node name="jetpack_statue" parent="." instance=ExtResource("13_n5tpk")]
+position = Vector2(968, 696)
+
+[node name="Label" type="Label" parent="jetpack_statue"]
+offset_left = -88.0
+offset_top = -120.0
+offset_right = 82.0
+offset_bottom = -45.0
+text = "You have unlocked
+the jetpack ability!
+Hold space to jetpack!"
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
-[connection signal="body_entered" from="vine_real" to="Player" method="_on_vine_real_body_entered"]
+[connection signal="body_entered" from="spider_statue" to="Player" method="_on_spider_statue_body_entered"]
+[connection signal="body_entered" from="jetpack_statue" to="Player" method="_on_jetpack_statue_body_entered"]

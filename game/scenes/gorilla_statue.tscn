@@ -1,26 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8pdfnrp0y6ia"]
+[gd_scene load_steps=3 format=3 uid="uid://cfp5it4ufumbw"]
 
-[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_2cuqi"]
-[ext_resource type="PackedScene" uid="uid://drqjcw8kf5siv" path="res://game/scenes/interactable.tscn" id="3_k3pms"]
+[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_e0f6n"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_swq2y"]
-size = Vector2(128, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pntr3"]
+size = Vector2(140, 147)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vu3mi"]
-size = Vector2(160, 128)
-
-[node name="GorillaStatue" type="Area2D"]
+[node name="gorilla_statue" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_2cuqi")
+position = Vector2(1, 5.00001)
+scale = Vector2(1.14062, 1.16007)
+texture = ExtResource("1_e0f6n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_swq2y")
-
-[node name="Interactable" parent="." instance=ExtResource("3_k3pms")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
-shape = SubResource("RectangleShape2D_vu3mi")
-
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+position = Vector2(2, 5.5)
+shape = SubResource("RectangleShape2D_pntr3")
