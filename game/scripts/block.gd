@@ -17,7 +17,6 @@ var initial_position: Vector2  # Store initial position for respawn
 # References
 @onready var outline = $Outline
 @onready var placement_preview = $PlacementPreview
-@onready var ground_indicator = $GroundIndicator
 @onready var pickup_indicator = $PickupIndicator
 @onready var pickup_sound = $PickUpSound
 @onready var place_sound = $PlaceDownSound
@@ -33,8 +32,6 @@ func _ready():
 		outline.visible = false
 	if placement_preview:
 		placement_preview.visible = false
-	if ground_indicator:
-		ground_indicator.visible = false
 	if pickup_indicator:
 		pickup_indicator.visible = false
 
@@ -64,8 +61,6 @@ func pick_up(new_parent):
 		outline.visible = true
 	if placement_preview:
 		placement_preview.visible = true
-	if ground_indicator:
-		ground_indicator.visible = true
 	
 	# Change parent to the player
 	get_parent().remove_child(self)
@@ -88,8 +83,6 @@ func place_down():
 		outline.visible = false
 	if placement_preview:
 		placement_preview.visible = false
-	if ground_indicator:
-		ground_indicator.visible = false
 	
 	# Calculate placement position based on player's direction
 	var player = get_parent()
@@ -123,7 +116,6 @@ func _process(_delta):
 	if is_picked_up:
 		global_position = get_parent().global_position + pickup_offset
 		update_placement_preview()
-		update_ground_indicator()
 	else:
 		update_pickup_indicator()
 
@@ -180,29 +172,8 @@ func update_placement_preview():
 	
 	# Check for block below and snap if needed
 	preview_pos = get_snap_position(preview_pos)
-	placement_preview.global_position = preview_pos - Vector2(10, 40)
-
-func update_ground_indicator():
-	if !ground_indicator || !placement_preview:
-		return
-		
-	# Get the preview position (where block will be placed)
-	var player = get_parent()
-	var direction = 1 if player.last_direction == "right" else -1
-	var preview_pos = player.global_position + Vector2(placement_distance * direction, 0)
-	
-	# Cast a ray downward from the preview position to find ground
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(preview_pos, preview_pos + Vector2(0, 1000))
-	query.exclude = [self]
-	query.collision_mask = original_collision_mask  # Use original mask to detect ground
-	
-	var result = space_state.intersect_ray(query)
-	if result:
-		ground_indicator.global_position = Vector2(preview_pos.x, result.position.y - grid_size/2.0)
-		ground_indicator.visible = true
-	else:
-		ground_indicator.visible = false
+	# Raise the preview by 25% of grid size to prevent ground clipping
+	placement_preview.global_position = preview_pos - Vector2(9, grid_size)
 
 func update_pickup_indicator():
 	if !pickup_indicator:
@@ -320,7 +291,5 @@ func reset_to_initial_position():
 		outline.visible = false
 	if placement_preview:
 		placement_preview.visible = false
-	if ground_indicator:
-		ground_indicator.visible = false
 	if pickup_indicator:
 		pickup_indicator.visible = false

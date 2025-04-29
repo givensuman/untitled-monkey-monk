@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 			#VINE CODE
 	var vine_release = false
 	if vine_grabbed:
+		%AnimationPlayer.play("vine_swinging")
 		position = vine.end_position  # Now we can access `end_position` properly
 		velocity = Vector2.ZERO
 		velocity.x = 0
@@ -125,7 +126,7 @@ func _physics_process(delta: float) -> void:
 		if direction != 0 and is_on_floor():
 			last_direction = "right" if direction > 0 else "left"
 			%AnimationPlayer.play("walk_" + last_direction)
-		if not is_on_floor():
+		elif not is_on_floor():
 			if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
 				%AnimationPlayer.play("jump_right")
 		elif velocity.x < 0: 

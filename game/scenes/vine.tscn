@@ -1,10 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dkend1lth1pyk"]
+[gd_scene load_steps=4 format=3 uid="uid://dkend1lth1pyk"]
 
-[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_2exqa"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bcr6h"]
-radius = 2.0
-height = 48.0
+[ext_resource type="Texture2D" uid="uid://cd4ug335p3dih" path="res://art/vines.png" id="1_4f1u6"]
 
 [sub_resource type="Animation" id="Animation_0ixve"]
 resource_name = "Swing"
@@ -29,15 +25,14 @@ _data = {
 [node name="Vine" type="Area2D" groups=["vine"]]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4)
-scale = Vector2(0.0429687, 0.890625)
-texture = ExtResource("1_2exqa")
+texture_filter = 3
+position = Vector2(-8, 32)
+texture = ExtResource("1_4f1u6")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 26)
-shape = SubResource("CapsuleShape2D_bcr6h")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-1, 3, -1, 8, -2, 8, -2, 12, -3, 12, -3, 19, -2, 19, -2, 23, -1, 23, -1, 25, 0, 25, 0, 27, 1, 27, 1, 29, 2, 29, 2, 35, 1, 35, 1, 36, 0, 36, 0, 37, -1, 37, -1, 47, 0, 47, 0, 48, 1, 48, 1, 46, 0, 46, 0, 38, 1, 38, 1, 37, 2, 37, 2, 36, 3, 36, 3, 28, 2, 28, 2, 26, 1, 26, 1, 24, 0, 24, 0, 22, -1, 22, -1, 18, -2, 18, -2, 13, -1, 13, -1, 9, 0, 9, 0, 4, 1, 4, 1, 3)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_1fawu")
+&"": SubResource("AnimationLibrary_1fawu")
 }
