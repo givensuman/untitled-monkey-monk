@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=17 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 [ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
+[ext_resource type="PackedScene" uid="uid://dmscwysqbrrvk" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
+[ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -137,4 +139,31 @@ the gorilla ability!
 Press Tab to pick up 
 and place blocks!"
 
+[node name="jetpack_statue" parent="." instance=ExtResource("13_n5tpk")]
+position = Vector2(5216, 1464)
+
+[node name="jetpack_label" type="Label" parent="jetpack_statue"]
+offset_left = -80.0
+offset_top = -120.0
+offset_right = 66.0
+offset_bottom = -45.0
+text = "You have unlocked
+the jetpack ability!
+Hold space to fly!"
+
+[node name="spider_statue" parent="." instance=ExtResource("12_05mfm")]
+position = Vector2(5720, 1456)
+
+[node name="spider_label" type="Label" parent="spider_statue"]
+offset_left = -80.0
+offset_top = -144.0
+offset_right = 75.0
+offset_bottom = -43.0
+text = "You have unlocked
+the spider monkey
+ability! You can now
+swing from vines!"
+
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
+[connection signal="body_entered" from="jetpack_statue" to="Player" method="_on_jetpack_statue_body_entered"]
+[connection signal="body_entered" from="spider_statue" to="Player" method="_on_spider_statue_body_entered"]

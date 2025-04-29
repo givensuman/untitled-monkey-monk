@@ -42,6 +42,7 @@ func _ready():
 	$PlayerArea.area_entered.connect(_on_player_area_entered)
 	#hide labels
 	$"../gorilla_statue/gorilla_label2".hide()
+	$"../jetpack_statue/jetpack_label".hide()
 	# Set initial checkpoint
 	last_checkpoint = get_tree().get_root().get_node("World/Tutorial/Checkpoint")
 
@@ -116,6 +117,12 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		$Sounds/JumpSound.play()
 
+	if not is_on_floor() and Input.is_action_pressed("ui_accept") and jetpack_unlocked:
+		is_flying = true
+		velocity.y = lerp(velocity.y, 0.0, 0.1)
+		velocity.y -= FLY_SPEED * delta
+	else:
+		is_flying = false
 		
 	# Get the input direction and handle the movement/deceleration.
 	if direction:
@@ -225,7 +232,22 @@ func _on_grab_area_area_entered(area: Area2D) -> void:
 
 
 func _on_gorilla_statue_body_entered(body: Node2D) -> void:
-	print("gorilla entered!")
-	gorilla_unlocked = true
-	$"../gorilla_statue/gorilla_label2".show()
+	if body.is_in_group("player"):
+		print("gorilla entered!")
+		gorilla_unlocked = true
+		$"../gorilla_statue/gorilla_label2".show()
 	
+
+
+func _on_jetpack_statue_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("jetpack entered!")
+		jetpack_unlocked = true
+		$"../jetpack_statue/jetpack_label".show()
+
+
+func _on_spider_statue_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		print("spider entered!")
+		spider_unlocked = true
+		$"../spider_statue/spider_label".show()
