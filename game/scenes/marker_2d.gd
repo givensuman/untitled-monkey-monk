@@ -30,7 +30,8 @@ func set_start_position(start_pos:Vector2, end_pos:Vector2):
 	angular_acceleration = 0.0
 func _ready() -> void:
 	set_start_position(global_position,end_position)
-	connect("body_entered", Callable(self, "_on_grab_zone_body_entered"))
+	# Connect to the parent Area2D's body_entered signal
+	vineArea.connect("body_entered", Callable(self, "_on_grab_zone_body_entered"))
 
 func process_velocity(delta:float)->void:
 	angular_acceleration = ((-gravity*delta)/arm_length) *sin(angle)
