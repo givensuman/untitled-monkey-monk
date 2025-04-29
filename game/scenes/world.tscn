@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=18 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 [ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
+[ext_resource type="PackedScene" uid="uid://bf6s1p5ubsvmd" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
+[ext_resource type="PackedScene" uid="uid://b1ypbvn8lrf8o" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tutorial"]
 size = Vector2(1708, 1028)
@@ -133,4 +135,31 @@ position = Vector2(1040, 400)
 [node name="vine_real3" parent="." instance=ExtResource("11_ef85w")]
 position = Vector2(704, 344)
 
+[node name="spider_statue" parent="." instance=ExtResource("12_05mfm")]
+position = Vector2(1464, 680)
+
+[node name="Label" type="Label" parent="spider_statue"]
+offset_left = -72.0
+offset_top = -128.0
+offset_right = 99.0
+offset_bottom = -27.0
+text = "You have unlocked
+the spider ability!
+You can now swing 
+on vines!"
+
+[node name="jetpack_statue" parent="." instance=ExtResource("13_n5tpk")]
+position = Vector2(968, 696)
+
+[node name="Label" type="Label" parent="jetpack_statue"]
+offset_left = -88.0
+offset_top = -120.0
+offset_right = 82.0
+offset_bottom = -45.0
+text = "You have unlocked
+the jetpack ability!
+Hold space to jetpack!"
+
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
+[connection signal="body_entered" from="spider_statue" to="Player" method="_on_spider_statue_body_entered"]
+[connection signal="body_entered" from="jetpack_statue" to="Player" method="_on_jetpack_statue_body_entered"]
