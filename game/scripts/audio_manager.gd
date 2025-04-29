@@ -11,7 +11,7 @@ var fade_time: float = 1.0  # 1 second fade duration
 var audio_streams = {
 	"tutorial": preload("res://sounds/music/tutorial_drums.mp3"),
 	"temple": preload("res://sounds/music/abandoned_temple_ambience.mp3"),
-	"ruins": preload("res://sounds/music/gorilla_music(safiatou).mp3")
+	"ruins": preload("res://sounds/music/ruins_percussion.mp3")
 }
 
 # Footstep sounds for different zones
@@ -23,14 +23,29 @@ var footstep_sounds = {
 
 func _ready():
 	zone_changed.connect(_on_zone_changed)
-	# Ensure both players start silent
-	audio_player.volume_db = -80
-	transition_player.volume_db = -80
+	# Start with temple music
+	audio_player.stream = audio_streams["tutorial"]
+	audio_player.volume_db = 0  # Set to normal volume
+	audio_player.play()
+	current_zone = "tutorial"
 	
 func _on_zone_changed(zone_name: String):
 	if zone_name == current_zone:
 		return
 		
+	# For tutorial zone, check if tutorial music is already playing somewhere
+	if zone_name == "tutorial":
+		var tree = get_tree()
+		var title_screen = tree.get_root().get_node_or_null("TitleScreen")
+		if title_screen and title_screen.has_node("MusicPlayer"):
+			var title_music = title_screen.get_node("MusicPlayer")
+			if title_music.playing and title_music.stream == audio_streams["tutorial"]:
+				# Tutorial music is already playing from title screen, just update footsteps
+				if zone_name in footstep_sounds:
+					update_player_footsteps(zone_name)
+				current_zone = zone_name
+				return
+	
 	current_zone = zone_name
 	
 	if zone_name in audio_streams:

@@ -1,8 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://o4owcmqmbaxu"]
+[gd_scene load_steps=18 format=3 uid="uid://o4owcmqmbaxu"]
 
 [ext_resource type="Script" uid="uid://c6nhinynh7olu" path="res://game/scripts/player.gd" id="1_ai0b7"]
-[ext_resource type="Texture2D" uid="uid://bdwl3rbrnx5xr" path="res://art/monkey-Sheet.png" id="2_fkr20"]
+[ext_resource type="Texture2D" uid="uid://b03bawwf108h3" path="res://art/concept_monkey-Sheet-updated.png" id="2_u5gyh"]
+[ext_resource type="AudioStream" uid="uid://lx6noc1ffna2" path="res://sounds/fx/grab_vines.mp3" id="3_lvpx6"]
 [ext_resource type="AudioStream" uid="uid://b468dt0sepa12" path="res://sounds/fx/jump.mp3" id="3_u5gyh"]
+[ext_resource type="AudioStream" uid="uid://camls55twieip" path="res://sounds/fx/swing_vines.mp3" id="4_nggnu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cufc"]
 radius = 12.0
@@ -87,6 +89,40 @@ tracks/0/keys = {
 "values": [15, 15, 15, 15, 15]
 }
 
+[sub_resource type="Animation" id="Animation_33hhw"]
+resource_name = "lift_walk_left"
+length = 0.48
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Monkey:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [54, 55, 56, 57]
+}
+
+[sub_resource type="Animation" id="Animation_od4tg"]
+resource_name = "lift_walk_right"
+length = 0.48
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Monkey:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24, 0.36),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [50, 51, 52, 53]
+}
+
 [sub_resource type="Animation" id="Animation_lvpx6"]
 resource_name = "walk_left"
 length = 0.72
@@ -128,19 +164,26 @@ _data = {
 &"idle_right": SubResource("Animation_nggnu"),
 &"jump_left": SubResource("Animation_fkr20"),
 &"jump_right": SubResource("Animation_o5wgc"),
+&"lift_walk_left": SubResource("Animation_33hhw"),
+&"lift_walk_right": SubResource("Animation_od4tg"),
 &"walk_left": SubResource("Animation_lvpx6"),
 &"walk_right": SubResource("Animation_u5gyh")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uj6kd"]
+radius = 11.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_ai0b7")
 
 [node name="Monkey" type="Sprite2D" parent="."]
 y_sort_enabled = true
 texture_filter = 3
-texture = ExtResource("2_fkr20")
-hframes = 28
+texture = ExtResource("2_u5gyh")
+hframes = 58
 frame = 22
 
 [node name="Shadow" type="Sprite2D" parent="Monkey"]
@@ -158,14 +201,39 @@ libraries = {
 &"": SubResource("AnimationLibrary_od4tg")
 }
 
-[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+[node name="vine_timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="grab_area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="grab_area"]
+position = Vector2(-3, 5)
+shape = SubResource("CapsuleShape2D_uj6kd")
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="Vine" type="Node" parent="Sounds"]
+
+[node name="Grab" type="AudioStreamPlayer" parent="Sounds/Vine"]
+stream = ExtResource("3_lvpx6")
+volume_db = 12.0
+
+[node name="Swing" type="AudioStreamPlayer" parent="Sounds/Vine"]
+stream = ExtResource("4_nggnu")
+volume_db = 12.0
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("3_u5gyh")
 
-[node name="WalkSound" type="Node" parent="."]
+[node name="WalkSound" type="Node" parent="Sounds"]
 
-[node name="Timer" type="Timer" parent="WalkSound"]
+[node name="Timer" type="Timer" parent="Sounds/WalkSound"]
 process_callback = 0
 wait_time = 0.5
 one_shot = true
 
-[node name="Sound" type="AudioStreamPlayer" parent="WalkSound"]
+[node name="Sound" type="AudioStreamPlayer" parent="Sounds/WalkSound"]
+
+[connection signal="timeout" from="vine_timer" to="." method="_on_vine_timer_timeout"]
+[connection signal="area_entered" from="grab_area" to="." method="_on_grab_area_area_entered"]
