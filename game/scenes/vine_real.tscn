@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8glbpcc4uvcm"]
 
-[ext_resource type="Script" path="res://game/scenes/vine_real.gd" id="1_o2pkg"]
-[ext_resource type="Script" path="res://game/scenes/marker_2d.gd" id="1_tv0p7"]
+[ext_resource type="Script" uid="uid://ubcfpetal6ns" path="res://game/scenes/vine_real.gd" id="1_o2pkg"]
+[ext_resource type="Script" uid="uid://75e2mb5y8vm1" path="res://game/scenes/marker_2d.gd" id="1_tv0p7"]
 [ext_resource type="Texture2D" uid="uid://cd4ug335p3dih" path="res://art/vines.png" id="3_klil1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ms6sq"]
