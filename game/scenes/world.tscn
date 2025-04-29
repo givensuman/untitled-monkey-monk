@@ -36,7 +36,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(4815, 1345)
+position = Vector2(188, 708)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2

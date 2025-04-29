@@ -21,6 +21,7 @@ var min_angle = -.9
 @onready var vine_collision = $"../CollisionShape2D"
 
 
+
 func set_start_position(start_pos:Vector2, end_pos:Vector2):
 	pivot_point = start_pos
 	end_position = end_pos
