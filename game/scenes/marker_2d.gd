@@ -71,6 +71,6 @@ func _physics_process(delta: float) -> void:
 		game_input()	
 	process_velocity(delta)
 	queue_redraw()
-func _draw() -> void:
-	draw_line(Vector2.ZERO, end_position - pivot_point, Color.WHITE, 1.0, false)
-	draw_circle(end_position-pivot_point, 3.0, Color.RED)
+#func _draw() -> void:
+	#draw_line(Vector2.ZERO, end_position - pivot_point, Color.WHITE, 1.0, false)
+	#draw_circle(end_position-pivot_point, 3.0, Color.RED)
