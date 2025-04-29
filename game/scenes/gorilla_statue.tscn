@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfp5it4ufumbw"]
+[gd_scene load_steps=3 format=3 uid="uid://cfp5it4ufumbw"]
 
 [ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_e0f6n"]
-[ext_resource type="Script" path="res://game/scripts/gorilla_statue.gd" id="1_l4ric"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pntr3"]
 size = Vector2(140, 147)
@@ -9,7 +8,6 @@ size = Vector2(140, 147)
 [node name="gorilla_statue" type="Area2D"]
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("1_l4ric")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 5.00001)
@@ -19,16 +17,3 @@ texture = ExtResource("1_e0f6n")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 5.5)
 shape = SubResource("RectangleShape2D_pntr3")
-
-[node name="gorilla_label" type="Label" parent="."]
-offset_left = -72.0
-offset_top = -152.0
-offset_right = 83.0
-offset_bottom = -51.0
-text = "You have unlocked
-the gorilla ability! 
-Press Tab to pick up 
-and place blocks!"
-metadata/_edit_use_anchors_ = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
