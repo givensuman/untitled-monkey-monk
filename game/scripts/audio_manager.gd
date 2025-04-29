@@ -29,6 +29,13 @@ func _ready():
 	audio_player.play()
 	current_zone = "tutorial"
 	
+	audio_player.connect("finished", Callable(self,"_on_loop_sound").bind(audio_player))
+
+func _on_loop_sound(player):
+	player.stream_paused = false
+	player.play()
+	print("audio ended, loopingd")
+	
 func _on_zone_changed(zone_name: String):
 	if zone_name == current_zone:
 		return
@@ -96,8 +103,8 @@ func _on_zone_changed(zone_name: String):
 func update_player_footsteps(zone_name: String):
 	var player = get_tree().get_first_node_in_group("player")
 	if player and zone_name in footstep_sounds:
-		if player.has_node("WalkSound/Sound"):
-			player.get_node("WalkSound/Sound").stream = footstep_sounds[zone_name]
+		if player.has_node("Sounds/WalkSound/Sound"):
+			player.get_node("Sounds/WalkSound/Sound").stream = footstep_sounds[zone_name]
 			print("Switched player footsteps to: ", footstep_sounds[zone_name])
 			# Set a reasonable volume for footsteps (-5 dB is a good starting point)
-			player.get_node("WalkSound/Sound").volume_db = -5
+			player.get_node("Sounds/WalkSound/Sound").volume_db = -5
