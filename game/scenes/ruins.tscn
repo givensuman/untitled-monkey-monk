@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://dhgyqxoqj7ur3"]
+[gd_scene load_steps=8 format=4 uid="uid://dhgyqxoqj7ur3"]
 
 [ext_resource type="Texture2D" uid="uid://dev65w8yuudlt" path="res://art/ruins_tileset.png" id="1_maoa0"]
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="2_2mpm0"]
 [ext_resource type="PackedScene" uid="uid://bjw5cktr3vtp3" path="res://game/scenes/block.tscn" id="3_iasqy"]
-[ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="4_hg3jr"]
 [ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="5_rbfp8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fbp42"]
@@ -178,9 +177,6 @@ position = Vector2(2320, 754)
 
 [node name="Block10" parent="Boxes" instance=ExtResource("3_iasqy")]
 position = Vector2(2248, 682)
-
-[node name="gorilla_statue" parent="." instance=ExtResource("4_hg3jr")]
-position = Vector2(186, 948)
 
 [node name="Checkpoint" parent="." instance=ExtResource("5_rbfp8")]
 position = Vector2(499, 991)

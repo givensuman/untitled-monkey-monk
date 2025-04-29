@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjw5cktr3vtp3"]
 
-[ext_resource type="Script" uid="uid://dqswhf4xlm4ax" path="res://game/scripts/block.gd" id="1_fjkqq"]
+[ext_resource type="Script" path="res://game/scripts/block.gd" id="1_fjkqq"]
 [ext_resource type="AudioStream" uid="uid://can6no4a3vqjq" path="res://sounds/fx/block_pick_up.mp3" id="2_8xjj3"]
 [ext_resource type="AudioStream" uid="uid://ci56o1wtkse1a" path="res://sounds/fx/block_place.mp3" id="3_1p461"]
 

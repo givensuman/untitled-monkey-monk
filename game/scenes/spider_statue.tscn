@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmscwysqbrrvk"]
+
+[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_cnhgy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ljrn5"]
+size = Vector2(143, 148)
+
+[node name="spider_statue" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.53674e-07, 2)
+scale = Vector2(1.14062, 1.15234)
+texture = ExtResource("1_cnhgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_ljrn5")

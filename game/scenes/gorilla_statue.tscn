@@ -20,15 +20,4 @@ texture = ExtResource("1_e0f6n")
 position = Vector2(2, 5.5)
 shape = SubResource("RectangleShape2D_pntr3")
 
-[node name="gorilla_label" type="Label" parent="."]
-offset_left = -72.0
-offset_top = -152.0
-offset_right = 83.0
-offset_bottom = -51.0
-text = "You have unlocked
-the gorilla ability! 
-Press Tab to pick up 
-and place blocks!"
-metadata/_edit_use_anchors_ = true
-
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

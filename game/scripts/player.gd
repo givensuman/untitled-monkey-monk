@@ -3,12 +3,14 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
+const FLY_SPEED = 1800
 
 const RANDOM_VOLUME_AMOUNT = 5
 const RANDOM_VOLUME_TIMEOUT = 0.1
 
 var spawn_position: Vector2
 var button = "res://button.tscn"
+var is_flying = false
 
 var last_direction = "right"
 var held_block: Node = null
@@ -18,7 +20,9 @@ var block_scene = preload("res://game/scenes/block.tscn")
 var vine_grabbed = false
 var vine = null
 var can_grab = true
-var gorilla_unlocked = true
+var gorilla_unlocked = false
+var spider_unlocked = false
+var jetpack_unlocked = false
 
 var last_checkpoint: Node = null
 # Reference to the world node for block placement
@@ -36,11 +40,14 @@ func _ready():
 	spawn_position = global_position
 	# Connect area entered signal for spike detection
 	$PlayerArea.area_entered.connect(_on_player_area_entered)
+	#hide labels
+	$"../gorilla_statue/gorilla_label2".hide()
 	# Set initial checkpoint
 	last_checkpoint = get_tree().get_root().get_node("World/Tutorial/Checkpoint")
 
 # Called when the gorilla ability is unlocked
 func _on_gorilla_ability_unlocked() -> void:
+	print("gorilla unlocked!")
 	gorilla_unlocked = true
 
 func respawn():
@@ -96,6 +103,13 @@ func _physics_process(delta: float) -> void:
 		velocity += _get_gravity() * delta * 1.5
 	
 	var direction := Input.get_axis("walk_left", "walk_right")
+	
+	if not is_on_floor() and Input.is_action_pressed("ui_accept") and jetpack_unlocked:
+		is_flying = true
+		velocity.y = lerp(velocity.y, 0.0, 0.1)
+		velocity.y -= FLY_SPEED * delta
+	else:
+		is_flying = false
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):
@@ -208,3 +222,10 @@ func _on_grab_area_area_entered(area: Area2D) -> void:
 		vine.grabbed = true
 		$Sounds/Vine/Grab.play()
 		print("Vine grabbed")
+
+
+func _on_gorilla_statue_body_entered(body: Node2D) -> void:
+	print("gorilla entered!")
+	gorilla_unlocked = true
+	$"../gorilla_statue/gorilla_label2".show()
+	

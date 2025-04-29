@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=15 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
@@ -6,8 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://lsfa41bqggar" path="res://game/scenes/viney.tscn" id="9_ifrqp"]
 [ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
-[ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
-[ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
+[ext_resource type="Script" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
+[ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
+[ext_resource type="Script" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 [ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
@@ -34,7 +35,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(8492, -404)
+position = Vector2(4760, 1384)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -122,3 +123,18 @@ position = Vector2(704, 344)
 
 [node name="Viney" parent="." instance=ExtResource("9_ifrqp")]
 position = Vector2(8353, -1369)
+
+[node name="gorilla_statue" parent="." instance=ExtResource("10_5lbqv")]
+position = Vector2(4008, 1456)
+
+[node name="gorilla_label2" type="Label" parent="gorilla_statue"]
+offset_left = -72.0
+offset_top = -152.0
+offset_right = 83.0
+offset_bottom = -51.0
+text = "You have unlocked
+the gorilla ability! 
+Press Tab to pick up 
+and place blocks!"
+
+[connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
