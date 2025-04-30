@@ -107,10 +107,13 @@ func _physics_process(delta: float) -> void:
 	
 	if not is_on_floor() and Input.is_action_pressed("ui_accept") and jetpack_unlocked:
 		is_flying = true
+		if not $Sounds/JetpackSound.playing:
+			$Sounds/JetpackSound.play()
 		velocity.y = lerp(velocity.y, 0.0, 0.1)
 		velocity.y -= FLY_SPEED * delta
 	else:
 		is_flying = false
+		$Sounds/JetpackSound.stop()
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or vine_release):

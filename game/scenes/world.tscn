@@ -43,7 +43,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(13437, -241)
+position = Vector2(15388, -414)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -232,7 +232,7 @@ position = Vector2(1813, 1486)
 position = Vector2(1884, 1486)
 
 [node name="Spikes3" parent="." instance=ExtResource("18_cvjtv")]
-position = Vector2(-35, 1493)
+position = Vector2(-35, 1497)
 
 [node name="Spikes4" parent="." instance=ExtResource("18_cvjtv")]
 position = Vector2(-119, 1493)

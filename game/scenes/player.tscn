@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://o4owcmqmbaxu"]
+[gd_scene load_steps=20 format=3 uid="uid://o4owcmqmbaxu"]
 
 [ext_resource type="Script" uid="uid://c6nhinynh7olu" path="res://game/scripts/player.gd" id="1_ai0b7"]
 [ext_resource type="Texture2D" uid="uid://cjlq3o1qhb4wi" path="res://art/concept_monkey-UPDATE2.png" id="2_lvpx6"]
 [ext_resource type="AudioStream" uid="uid://lx6noc1ffna2" path="res://sounds/fx/grab_vines.mp3" id="3_lvpx6"]
 [ext_resource type="AudioStream" uid="uid://b468dt0sepa12" path="res://sounds/fx/jump.mp3" id="3_u5gyh"]
 [ext_resource type="AudioStream" uid="uid://camls55twieip" path="res://sounds/fx/swing_vines.mp3" id="4_nggnu"]
+[ext_resource type="AudioStream" uid="uid://b1ya7ykm6e1r1" path="res://sounds/fx/jetpack.mp3" id="6_nggnu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7cufc"]
 radius = 12.0
@@ -250,6 +251,9 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Sound" type="AudioStreamPlayer" parent="Sounds/WalkSound"]
+
+[node name="JetpackSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("6_nggnu")
 
 [connection signal="timeout" from="vine_timer" to="." method="_on_vine_timer_timeout"]
 [connection signal="area_entered" from="grab_area" to="." method="_on_grab_area_area_entered"]
