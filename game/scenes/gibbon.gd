@@ -1,4 +1,5 @@
 extends Node2D
 
-func _physics_process(float):
+func _ready() -> void:
 	$AnimationPlayer.play("golden_banana")
+	print($Marker2D.global_position)

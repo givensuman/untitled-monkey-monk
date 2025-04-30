@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bk6yboi6dhknr"]
+[gd_scene load_steps=7 format=3 uid="uid://bk6yboi6dhknr"]
 
 [ext_resource type="Texture2D" uid="uid://do4kcgtd7pk4w" path="res://art/altar_door-Sheet.png" id="1_door"]
 [ext_resource type="Script" uid="uid://k7l78w7ux7f3" path="res://game/scripts/altar_door.gd" id="1_script"]
@@ -41,7 +41,12 @@ _data = {
 &"RESET": SubResource("Animation_reset")
 }
 
-[node name="Altar_Door" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n3o6v"]
+size = Vector2(147, 147)
+
+[node name="Altar_Door" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -55,3 +60,6 @@ hframes = 6
 libraries = {
 &"": SubResource("AnimationLibrary_door")
 }
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n3o6v")

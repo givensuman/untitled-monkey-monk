@@ -127,3 +127,6 @@ hframes = 3
 libraries = {
 &"": SubResource("AnimationLibrary_npgyu")
 }
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(135, -108)
