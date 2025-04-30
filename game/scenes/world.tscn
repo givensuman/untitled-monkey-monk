@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=23 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
 [ext_resource type="PackedScene" uid="uid://bk6yboi6dhknr" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="18_cvjtv"]
-[ext_resource type="PackedScene" uid="uid://c6q0nfsjkrj2h" path="res://game/scenes/banana.tscn" id="19_twmbl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -262,16 +261,46 @@ position = Vector2(-650, 1494)
 [node name="Spikes12" parent="." instance=ExtResource("18_cvjtv")]
 position = Vector2(-718, 1495)
 
-[node name="Banana" parent="." instance=ExtResource("19_twmbl")]
+[node name="Banana" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(3201, -196)
+script = null
 
-[node name="Banana2" parent="." instance=ExtResource("19_twmbl")]
+[node name="Banana2" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(3271, -197)
 color = "green"
+script = null
 
-[node name="Banana3" parent="." instance=ExtResource("19_twmbl")]
+[node name="Banana3" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(3344, -201)
 color = "purple"
+script = null
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
 [connection signal="body_entered" from="jetpack_statue" to="Player" method="_on_jetpack_statue_body_entered"]
