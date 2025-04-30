@@ -13,7 +13,8 @@ var audio_streams = {
 	"temple": preload("res://sounds/music/abandoned_temple_ambience.mp3"),
 	"ruins": preload("res://sounds/music/ruins_percussion.mp3"),
 	"vines": preload("res://sounds/music/vines_music.mp3"),
-	"workshop": preload("res://sounds/music/jetpack_music.mp3")
+	"workshop": preload("res://sounds/music/jetpack_music.mp3"),
+	"gibbon": preload("res://sounds/music/choir.mp3"),
 }
 
 # Footstep sounds for different zones
@@ -22,7 +23,8 @@ var footstep_sounds = {
 	"temple": preload("res://sounds/fx/walk_tiles.ogg"),
 	"ruins": preload("res://sounds/fx/walk_tiles.ogg"),
 	"vines": preload("res://sounds/fx/walk_grass.ogg"),
-	"workshop": preload("res://sounds/fx/walk_dirt.ogg")
+	"workshop": preload("res://sounds/fx/walk_dirt.ogg"),
+	"gibbon": preload("res://sounds/fx/walk_tiles.ogg")
 }
 
 func _ready():

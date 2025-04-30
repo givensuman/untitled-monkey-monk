@@ -191,6 +191,16 @@ position = Vector2(4523, -935)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ruins")
 
+[node name="GibbonMusicZone" type="Area2D" parent="Ruins"]
+position = Vector2(-7645, -4217)
+script = ExtResource("9_xkw3f")
+zone_name = "gibbon"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/GibbonMusicZone"]
+position = Vector2(4523, -935)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ruins")
+
 [node name="Workshop" parent="." instance=ExtResource("8_621cg")]
 position = Vector2(13633, -1230)
 
