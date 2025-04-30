@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=23 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dmscwysqbrrvk" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
 [ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
 [ext_resource type="PackedScene" uid="uid://bk6yboi6dhknr" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
+[ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="18_cvjtv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -172,7 +173,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_ruins")
 
 [node name="Workshop" parent="." instance=ExtResource("8_621cg")]
-position = Vector2(13633, -1225)
+position = Vector2(13633, -1230)
 
 [node name="vine_real" parent="." instance=ExtResource("11_ef85w")]
 position = Vector2(1288, 440)
@@ -223,6 +224,42 @@ text = "You have unlocked
 the spider monkey
 ability! You can now
 swing from vines!"
+
+[node name="Spikes" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(1813, 1486)
+
+[node name="Spikes2" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(1884, 1486)
+
+[node name="Spikes3" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-35, 1493)
+
+[node name="Spikes4" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-119, 1493)
+
+[node name="Spikes5" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-195, 1493)
+
+[node name="Spikes6" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-266, 1493)
+
+[node name="Spikes7" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-351, 1494)
+
+[node name="Spikes8" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-416, 1494)
+
+[node name="Spikes9" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-489, 1494)
+
+[node name="Spikes10" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-565, 1494)
+
+[node name="Spikes11" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-650, 1494)
+
+[node name="Spikes12" parent="." instance=ExtResource("18_cvjtv")]
+position = Vector2(-718, 1495)
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
 [connection signal="body_entered" from="jetpack_statue" to="Player" method="_on_jetpack_statue_body_entered"]
