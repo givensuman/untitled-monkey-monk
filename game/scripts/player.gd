@@ -120,10 +120,18 @@ func _physics_process(delta: float) -> void:
 		velocity.y = JUMP_VELOCITY
 		$Sounds/JumpSound.play()
 
-	if not is_on_floor() and Input.is_action_pressed("ui_accept") and jetpack_unlocked:
-		is_flying = true
+	if is_flying == true and Input.is_action_pressed("ui_accept") and jetpack_unlocked:
 		velocity.y = lerp(velocity.y, 0.0, 0.1)
 		velocity.y -= FLY_SPEED * delta
+		if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jetpack_right":
+			%AnimationPlayer.play("jetpack_right")
+		elif velocity.x < 0 and %AnimationPlayer.assigned_animation != "jetpack_left":
+			%AnimationPlayer.play("jetpack_left")
+	elif not is_on_floor():
+			if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
+				%AnimationPlayer.play("jump_right")
+			elif velocity.x < 0 and %AnimationPlayer.assigned_animation != "jump_left": 
+				%AnimationPlayer.play("jump_left")
 	else:
 		is_flying = false
 		
@@ -150,11 +158,6 @@ func _physics_process(delta: float) -> void:
 		if direction != 0 and is_on_floor():
 			last_direction = "right" if direction > 0 else "left"
 			%AnimationPlayer.play("walk_" + last_direction)
-		elif not is_on_floor():
-			if velocity.x > 0 and %AnimationPlayer.assigned_animation != "jump_right":
-				%AnimationPlayer.play("jump_right")
-			elif velocity.x < 0 and %AnimationPlayer.assigned_animation != "jump_left": 
-				%AnimationPlayer.play("jump_left")
 		elif is_on_floor():
 			%AnimationPlayer.play("idle_" + last_direction)
 	

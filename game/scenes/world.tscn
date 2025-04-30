@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=25 format=3 uid="uid://6lvhxowtgj46"]
 
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
 [ext_resource type="PackedScene" uid="uid://dmscwysqbrrvk" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
 [ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
+[ext_resource type="PackedScene" uid="uid://c7tuqhslqp7dn" path="res://game/scenes/gibbon.tscn" id="13_og4pm"]
 [ext_resource type="PackedScene" uid="uid://bk6yboi6dhknr" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="18_cvjtv"]
 [ext_resource type="PackedScene" uid="uid://dw0rwjdgjlve2" path="res://game/scenes/banana.tscn" id="19_twmbl"]
@@ -44,7 +45,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(3720, -212)
+position = Vector2(13869, -265)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -176,6 +177,9 @@ shape = SubResource("RectangleShape2D_ruins")
 [node name="Workshop" parent="." instance=ExtResource("8_621cg")]
 position = Vector2(13633, -1230)
 
+[node name="Gibbon" parent="." instance=ExtResource("13_og4pm")]
+position = Vector2(571, -4553)
+
 [node name="vine_real" parent="." instance=ExtResource("11_ef85w")]
 position = Vector2(1288, 440)
 
@@ -263,14 +267,14 @@ position = Vector2(-650, 1494)
 position = Vector2(-718, 1495)
 
 [node name="Banana" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3198, -179)
+position = Vector2(8061, -229)
 
 [node name="Banana2" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3276, -186)
+position = Vector2(13505, -197)
 color = "green"
 
 [node name="Banana3" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3348, -201)
+position = Vector2(4575, -998)
 color = "purple"
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]

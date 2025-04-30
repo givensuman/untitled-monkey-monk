@@ -5,5 +5,5 @@ extends Node2D
 func _on_all_bananas_collected() -> void:
 	# Play door opening animation
 	print("All bananas collected!")
-	#animation_player.play("Open")
-	$Sprite2D.frame += 5
+	animation_player.play("Open")
+	
