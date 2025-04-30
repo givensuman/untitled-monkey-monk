@@ -1,5 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://6lvhxowtgj46"]
+[gd_scene load_steps=28 format=3 uid="uid://6lvhxowtgj46"]
 
+[ext_resource type="Script" uid="uid://cdjawi73d56vm" path="res://game/scenes/world.gd" id="1_6s0f1"]
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
@@ -18,7 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
 [ext_resource type="PackedScene" uid="uid://bk6yboi6dhknr" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="18_cvjtv"]
-[ext_resource type="PackedScene" uid="uid://c6q0nfsjkrj2h" path="res://game/scenes/banana.tscn" id="19_twmbl"]
+[ext_resource type="PackedScene" uid="uid://c7tuqhslqp7dn" path="res://game/scenes/gibbon.tscn" id="19_twmbl"]
+[ext_resource type="PackedScene" uid="uid://c6q0nfsjkrj2h" path="res://game/scenes/banana.tscn" id="20_hk75s"]
+[ext_resource type="PackedScene" uid="uid://d61rdftgdupx" path="res://game/scenes/green_banana.tscn" id="21_6s0f1"]
+[ext_resource type="PackedScene" uid="uid://i8x6pxq5fpoe" path="res://game/scenes/purple_banana.tscn" id="22_22n25"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -33,6 +37,7 @@ size = Vector2(98, 202)
 size = Vector2(246, 97)
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_6s0f1")
 
 [node name="AudioManager" type="Node" parent="."]
 script = ExtResource("10_audio")
@@ -44,7 +49,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(3720, -212)
+position = Vector2(13906, -275)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -176,6 +181,9 @@ shape = SubResource("RectangleShape2D_ruins")
 [node name="Workshop" parent="." instance=ExtResource("8_621cg")]
 position = Vector2(13633, -1230)
 
+[node name="Gibbon" parent="." instance=ExtResource("19_twmbl")]
+position = Vector2(1180, -5640)
+
 [node name="vine_real" parent="." instance=ExtResource("11_ef85w")]
 position = Vector2(1288, 440)
 
@@ -262,16 +270,14 @@ position = Vector2(-650, 1494)
 [node name="Spikes12" parent="." instance=ExtResource("18_cvjtv")]
 position = Vector2(-718, 1495)
 
-[node name="Banana4" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3211, -180)
+[node name="BlueBanana" parent="." instance=ExtResource("20_hk75s")]
+position = Vector2(8058, -236)
 
-[node name="Banana5" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3274, -184)
-color = "green"
+[node name="GreenBanana" parent="." instance=ExtResource("21_6s0f1")]
+position = Vector2(13490, -196)
 
-[node name="Banana6" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3341, -178)
-color = "purple"
+[node name="PurpleBanana" parent="." instance=ExtResource("22_22n25")]
+position = Vector2(4592, -1014)
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
 [connection signal="body_entered" from="jetpack_statue" to="Player" method="_on_jetpack_statue_body_entered"]

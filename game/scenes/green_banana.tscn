@@ -1,27 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6q0nfsjkrj2h"]
+[gd_scene load_steps=5 format=3 uid="uid://d61rdftgdupx"]
 
-[ext_resource type="Script" uid="uid://dfbrj8h25svl0" path="res://game/scenes/blue_banana.gd" id="1_5gigg"]
-[ext_resource type="Texture2D" uid="uid://cnmiehvyupbhq" path="res://art/banana_blue.png" id="2_5gigg"]
-[ext_resource type="AudioStream" uid="uid://dtuy2jsg1jdse" path="res://sounds/fx/pickup_banana.mp3" id="3_5gigg"]
+[ext_resource type="Script" uid="uid://hwfygjhcttce" path="res://game/scenes/green_banana.gd" id="1_ehycj"]
+[ext_resource type="Texture2D" uid="uid://bveandcxjm3fa" path="res://art/banana_green.png" id="2_ivpyd"]
+[ext_resource type="AudioStream" uid="uid://dtuy2jsg1jdse" path="res://sounds/fx/pickup_banana.mp3" id="3_7wfcw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7cufc"]
 radius = 24.0
 
-[node name="BlueBanana" type="Area2D"]
+[node name="GreenBanana" type="Area2D"]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_5gigg")
+script = ExtResource("1_ehycj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
 scale = Vector2(3, 3)
-texture = ExtResource("2_5gigg")
+texture = ExtResource("2_ivpyd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7cufc")
 
 [node name="CollectSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_5gigg")
+stream = ExtResource("3_7wfcw")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
