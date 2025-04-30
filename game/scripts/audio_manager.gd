@@ -11,14 +11,18 @@ var fade_time: float = 1.0  # 1 second fade duration
 var audio_streams = {
 	"tutorial": preload("res://sounds/music/tutorial_drums.mp3"),
 	"temple": preload("res://sounds/music/abandoned_temple_ambience.mp3"),
-	"ruins": preload("res://sounds/music/ruins_percussion.mp3")
+	"ruins": preload("res://sounds/music/ruins_percussion.mp3"),
+	"vines": preload("res://sounds/music/vines_music.mp3"),
+	"workshop": preload("res://sounds/music/jetpack_music.mp3")
 }
 
 # Footstep sounds for different zones
 var footstep_sounds = {
 	"tutorial": preload("res://sounds/fx/walk_dirt.ogg"),
 	"temple": preload("res://sounds/fx/walk_tiles.ogg"),
-	"ruins": preload("res://sounds/fx/walk_tiles.ogg")
+	"ruins": preload("res://sounds/fx/walk_tiles.ogg"),
+	"vines": preload("res://sounds/fx/walk_grass.ogg"),
+	"workshop": preload("res://sounds/fx/walk_dirt.ogg")
 }
 
 func _ready():

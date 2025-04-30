@@ -3,20 +3,20 @@
 [ext_resource type="PackedScene" uid="uid://4r37b3emlcpq" path="res://game/scenes/tutorial.tscn" id="2_fy24a"]
 [ext_resource type="PackedScene" uid="uid://o4owcmqmbaxu" path="res://game/scenes/player.tscn" id="2_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://byvqxojtil4nf" path="res://game/scenes/reg_temple.tscn" id="4_6pf46"]
-[ext_resource type="PackedScene" path="res://game/scenes/blue_altar.tscn" id="7_7m8jt"]
+[ext_resource type="PackedScene" uid="uid://cvl3d5kdkn24r" path="res://game/scenes/blue_altar.tscn" id="7_7m8jt"]
 [ext_resource type="PackedScene" uid="uid://dhgyqxoqj7ur3" path="res://game/scenes/ruins.tscn" id="7_wkjk4"]
 [ext_resource type="PackedScene" uid="uid://bddfsnlgnoxm2" path="res://game/scenes/workshop.tscn" id="8_621cg"]
-[ext_resource type="PackedScene" path="res://game/scenes/green_altar.tscn" id="8_cvjtv"]
+[ext_resource type="PackedScene" uid="uid://cx0y33chwy5dk" path="res://game/scenes/green_altar.tscn" id="8_cvjtv"]
 [ext_resource type="PackedScene" uid="uid://lsfa41bqggar" path="res://game/scenes/viney.tscn" id="9_ifrqp"]
 [ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="9_nepmf"]
-[ext_resource type="PackedScene" path="res://game/scenes/purple_altar.tscn" id="9_twmbl"]
+[ext_resource type="PackedScene" uid="uid://bheeoojpsyxjo" path="res://game/scenes/purple_altar.tscn" id="9_twmbl"]
 [ext_resource type="Script" uid="uid://b4tcblxc75nhe" path="res://game/scripts/zones/music_zone.gd" id="9_xkw3f"]
 [ext_resource type="PackedScene" uid="uid://cfp5it4ufumbw" path="res://game/scenes/gorilla_statue.tscn" id="10_5lbqv"]
 [ext_resource type="Script" uid="uid://vqb21vh7efru" path="res://game/scripts/audio_manager.gd" id="10_audio"]
 [ext_resource type="PackedScene" uid="uid://b8glbpcc4uvcm" path="res://game/scenes/vine_real.tscn" id="11_ef85w"]
-[ext_resource type="PackedScene" uid="uid://bf6s1p5ubsvmd" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
-[ext_resource type="PackedScene" uid="uid://b1ypbvn8lrf8o" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
-[ext_resource type="PackedScene" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
+[ext_resource type="PackedScene" uid="uid://dmscwysqbrrvk" path="res://game/scenes/spider_statue.tscn" id="12_05mfm"]
+[ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
+[ext_resource type="PackedScene" uid="uid://bk6yboi6dhknr" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -42,7 +42,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(1899, -115)
+position = Vector2(13437, -241)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -127,6 +127,46 @@ script = ExtResource("9_xkw3f")
 zone_name = "ruins"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/RuinsMusicZone2"]
+position = Vector2(4523, -935)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ruins")
+
+[node name="VineMusicZone" type="Area2D" parent="Ruins"]
+position = Vector2(81, 4)
+script = ExtResource("9_xkw3f")
+zone_name = "vines"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/VineMusicZone"]
+position = Vector2(4523, -935)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ruins")
+
+[node name="VineMusicZone2" type="Area2D" parent="Ruins"]
+position = Vector2(5254, 178)
+script = ExtResource("9_xkw3f")
+zone_name = "vines"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/VineMusicZone2"]
+position = Vector2(4523, -935)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ruins")
+
+[node name="WorkshopMusicZone" type="Area2D" parent="Ruins"]
+position = Vector2(5351, 179)
+script = ExtResource("9_xkw3f")
+zone_name = "workshop"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/WorkshopMusicZone"]
+position = Vector2(4523, -935)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ruins")
+
+[node name="WorkshopMusicZone2" type="Area2D" parent="Ruins"]
+position = Vector2(-3860, -677)
+script = ExtResource("9_xkw3f")
+zone_name = "workshop"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ruins/WorkshopMusicZone2"]
 position = Vector2(4523, -935)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ruins")
