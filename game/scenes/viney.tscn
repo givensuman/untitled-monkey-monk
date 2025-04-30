@@ -286,4 +286,4 @@ position = Vector2(3505, 1188)
 position = Vector2(148, 1016)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("4_jgmkk")]
-position = Vector2(2767, 1045)
+position = Vector2(2773, 1069)

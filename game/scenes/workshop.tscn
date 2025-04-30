@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://bddfsnlgnoxm2"]
+[gd_scene load_steps=13 format=4 uid="uid://bddfsnlgnoxm2"]
 
 [ext_resource type="Texture2D" uid="uid://cn3g7l72beluj" path="res://art/workshop.png" id="1_rl8hr"]
 [ext_resource type="Texture2D" uid="uid://cagocyhgqsdy" path="res://art/workshop_background.png" id="1_w3ltl"]
 [ext_resource type="Texture2D" uid="uid://c0jh4mg01ikl" path="res://art/jetpack_object.png" id="2_843g4"]
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="2_csyhr"]
+[ext_resource type="PackedScene" uid="uid://q01ii0xvbkh6" path="res://game/scenes/checkpoint.tscn" id="5_bm4p8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_843g4"]
 texture = ExtResource("1_w3ltl")
@@ -348,3 +349,9 @@ rotation = 3.14159
 [node name="Spikes11" parent="." instance=ExtResource("2_csyhr")]
 position = Vector2(-7657, -373)
 rotation = 3.14159
+
+[node name="Checkpoint" parent="." instance=ExtResource("5_bm4p8")]
+position = Vector2(3166, -837)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("5_bm4p8")]
+position = Vector2(-4219, -545)
