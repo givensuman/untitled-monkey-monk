@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6q0nfsjkrj2h"]
+[gd_scene load_steps=5 format=3 uid="uid://dw0rwjdgjlve2"]
 
 [ext_resource type="Script" uid="uid://b27rlcqgh2vne" path="res://game/scripts/banana.gd" id="1_3sc30"]
 [ext_resource type="Texture2D" uid="uid://cnmiehvyupbhq" path="res://art/banana_blue.png" id="2_5gigg"]
