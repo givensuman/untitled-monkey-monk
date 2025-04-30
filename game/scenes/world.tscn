@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://clwnqwk088w4e" path="res://game/scenes/jetpack_statue.tscn" id="13_n5tpk"]
 [ext_resource type="PackedScene" uid="uid://bk6yboi6dhknr" path="res://game/scenes/altar_door.tscn" id="14_6atb8"]
 [ext_resource type="PackedScene" uid="uid://dt2k2avria3ff" path="res://game/scenes/spikes.tscn" id="18_cvjtv"]
-[ext_resource type="PackedScene" uid="uid://c6q0nfsjkrj2h" path="res://game/scenes/banana.tscn" id="19_twmbl"]
+[ext_resource type="PackedScene" uid="uid://dw0rwjdgjlve2" path="res://game/scenes/banana.tscn" id="19_twmbl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(50, 50)
@@ -263,14 +263,14 @@ position = Vector2(-650, 1494)
 position = Vector2(-718, 1495)
 
 [node name="Banana" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3201, -196)
+position = Vector2(3198, -179)
 
 [node name="Banana2" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3271, -197)
+position = Vector2(3276, -186)
 color = "green"
 
 [node name="Banana3" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3344, -201)
+position = Vector2(3348, -201)
 color = "purple"
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]
