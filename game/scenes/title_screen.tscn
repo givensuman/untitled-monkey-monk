@@ -1,10 +1,48 @@
-[gd_scene load_steps=6 format=3 uid="uid://b8p4pspqr6qmx"]
+[gd_scene load_steps=10 format=3 uid="uid://b8p4pspqr6qmx"]
 
 [ext_resource type="Script" uid="uid://diyc51nl3yvs4" path="res://game/scripts/title_screen.gd" id="1_8h4vx"]
 [ext_resource type="Texture2D" uid="uid://bhag74s4mfbt8" path="res://art/wallpaper.jpg" id="2_7lbcs"]
 [ext_resource type="Texture2D" uid="uid://bcqyrf5j1fq3v" path="res://art/x.png" id="2_oeb76"]
 [ext_resource type="FontFile" uid="uid://cen8oa8osollv" path="res://fonts/ARCADECLASSIC.TTF" id="3_4xqfl"]
 [ext_resource type="FontFile" uid="uid://d013wow5hm4tr" path="res://fonts/Lacquer/Lacquer-Regular.ttf" id="3_7lbcs"]
+[ext_resource type="Texture2D" uid="uid://bbsme0waplb3f" path="res://art/monkey_cutscene-Sheet.png" id="6_vld5t"]
+
+[sub_resource type="Animation" id="Animation_yics0"]
+resource_name = "cutscene"
+length = 4.55
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35, 0.7, 1.05, 1.4, 1.75, 2.1, 2.45, 2.8, 3.15, 3.5, 3.85, 4.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_u02i6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ybntu"]
+_data = {
+&"RESET": SubResource("Animation_u02i6"),
+&"cutscene": SubResource("Animation_yics0")
+}
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -36,17 +74,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.204164, 0.132288, 0.00937492, 0.741176)
 
-[node name="Title" type="Label" parent="."]
+[node name="Title" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -216.0
-offset_top = -412.0
-offset_right = 223.0
-offset_bottom = -324.0
+offset_left = -356.5
+offset_top = -433.0
+offset_right = 363.5
+offset_bottom = -303.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_4xqfl")
@@ -54,25 +92,7 @@ theme_override_font_sizes/font_size = 128
 text = "Monkey Monk"
 horizontal_alignment = 1
 
-[node name="SubSubtitle" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -464.0
-offset_top = -252.0
-offset_right = 413.0
-offset_bottom = -77.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_4xqfl")
-theme_override_font_sizes/font_size = 48
-text = "~ and the ~"
-horizontal_alignment = 1
-
-[node name="Subtitle" type="Label" parent="."]
+[node name="Subtitle" type="Label" parent="ColorRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -90,7 +110,25 @@ theme_override_font_sizes/font_size = 82
 text = "Four  Noble  Truths"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="SubSubtitle" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -252.0
+offset_right = 413.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4xqfl")
+theme_override_font_sizes/font_size = 48
+text = "~ and the ~"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
 layout_mode = 2
 offset_left = 881.0
 offset_top = 712.0
@@ -98,7 +136,7 @@ offset_right = 1081.0
 offset_bottom = 932.0
 theme_override_constants/separation = 20
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="Button" parent="ColorRect/VBoxContainer"]
 texture_filter = 3
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
@@ -106,50 +144,73 @@ theme_override_fonts/font = ExtResource("3_4xqfl")
 theme_override_font_sizes/font_size = 34
 text = "Play"
 
-[node name="CreditsButton" type="Button" parent="VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="ColorRect/VBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_4xqfl")
 theme_override_font_sizes/font_size = 34
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="ColorRect/VBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_4xqfl")
 theme_override_font_sizes/font_size = 34
 text = "Quit"
 
-[node name="X1" type="Sprite2D" parent="."]
+[node name="X1" type="Sprite2D" parent="ColorRect"]
 position = Vector2(696, 440)
 scale = Vector2(0.142828, 0.0292213)
 texture = ExtResource("2_oeb76")
 
-[node name="X2" type="Sprite2D" parent="."]
+[node name="X2" type="Sprite2D" parent="ColorRect"]
 position = Vector2(1192, 421)
 rotation = 2.87979
 scale = Vector2(0.0779159, 0.0708246)
 texture = ExtResource("2_oeb76")
 
-[node name="Tree" type="Label" parent="."]
+[node name="Tree" type="Label" parent="ColorRect"]
 layout_mode = 0
 offset_left = 480.0
 offset_top = 320.0
-offset_right = 629.0
+offset_right = 636.0
 offset_bottom = 408.0
 theme_override_colors/font_color = Color(0.985004, 0.00107555, 0.000589313, 1)
 theme_override_fonts/font = ExtResource("3_7lbcs")
 theme_override_font_sizes/font_size = 64
 text = "TREE"
 
-[node name="Fruits" type="Label" parent="."]
+[node name="Fruits" type="Label" parent="ColorRect"]
 layout_mode = 0
 offset_left = 1264.0
 offset_top = 448.0
-offset_right = 1413.0
-offset_bottom = 536.0
+offset_right = 1458.0
+offset_bottom = 605.0
 theme_override_colors/font_color = Color(0.975919, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_7lbcs")
 theme_override_font_sizes/font_size = 64
 text = "FRUITS
 "
+
+[node name="AnimationRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.215686, 0.639216, 0.780392, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimationRect"]
+texture_filter = 3
+position = Vector2(945, 697)
+scale = Vector2(6, 6)
+texture = ExtResource("6_vld5t")
+hframes = 13
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationRect"]
+libraries = {
+&"": SubResource("AnimationLibrary_ybntu")
+}
+
+[connection signal="animation_finished" from="AnimationRect/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

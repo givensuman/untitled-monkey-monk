@@ -62,7 +62,7 @@ autoplay = true
 
 [node name="Player" parent="." instance=ExtResource("2_wkjk4")]
 z_index = 1
-position = Vector2(3653, -173)
+position = Vector2(156, 795)
 
 [node name="PlayerArea" type="Area2D" parent="Player"]
 collision_layer = 2
@@ -300,14 +300,14 @@ position = Vector2(-650, 1494)
 position = Vector2(-718, 1495)
 
 [node name="Banana" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3167, -214)
+position = Vector2(8062, -222)
 
 [node name="Banana2" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3263, -214)
+position = Vector2(13505, -194)
 color = "green"
 
 [node name="Banana3" parent="." instance=ExtResource("19_twmbl")]
-position = Vector2(3343, -207)
+position = Vector2(4588, -998)
 color = "purple"
 
 [connection signal="body_entered" from="gorilla_statue" to="Player" method="_on_gorilla_statue_body_entered"]

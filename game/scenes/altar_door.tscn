@@ -42,7 +42,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n3o6v"]
-size = Vector2(147, 147)
+size = Vector2(27.75, 81.5)
 
 [node name="Altar_Door" type="Area2D"]
 collision_layer = 2
@@ -62,4 +62,5 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(79.875, 6)
 shape = SubResource("RectangleShape2D_n3o6v")

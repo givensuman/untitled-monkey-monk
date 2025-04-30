@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c7tuqhslqp7dn"]
+[gd_scene load_steps=14 format=4 uid="uid://c7tuqhslqp7dn"]
 
 [ext_resource type="Texture2D" uid="uid://dj74108pscj4o" path="res://art/pristine.png" id="1_2bcgo"]
 [ext_resource type="Texture2D" uid="uid://b1cqht8drevfd" path="res://art/pristine_background-export.png" id="1_bb2el"]
@@ -101,6 +101,9 @@ _data = {
 &"golden_banana": SubResource("Animation_d5ina")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mschs"]
+size = Vector2(101, 102)
+
 [node name="Gibbon" type="Node2D"]
 script = ExtResource("1_mschs")
 
@@ -130,3 +133,12 @@ libraries = {
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(135, -108)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1104, -192)
+shape = SubResource("RectangleShape2D_mschs")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
