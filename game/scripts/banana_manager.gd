@@ -17,10 +17,11 @@ func collect_banana(color: String) -> void:
 	
 	check_all_collected()
 
-func check_all_collected() -> void:
+func check_all_collected():
 	if blue_banana_collected and green_banana_collected and purple_banana_collected:
 		print("All bananas collected, emitting signal!")
 		emit_signal("all_bananas_collected")
+		return true
 
 func _ready() -> void:
 	# Connect to the door to open it when all bananas are collected

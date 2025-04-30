@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cfp5it4ufumbw"]
 
-[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_e0f6n"]
 [ext_resource type="Script" uid="uid://dwps8pr2m6u6" path="res://game/scripts/gorilla_statue.gd" id="1_l4ric"]
+[ext_resource type="Texture2D" uid="uid://db2qjc6eaa2yx" path="res://art/banana_statue.png" id="2_l3xgi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pntr3"]
 size = Vector2(140, 147)
@@ -12,9 +12,9 @@ collision_mask = 3
 script = ExtResource("1_l4ric")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
 position = Vector2(1, 5.00001)
-scale = Vector2(1.14062, 1.16007)
-texture = ExtResource("1_e0f6n")
+texture = ExtResource("2_l3xgi")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, 5.5)

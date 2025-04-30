@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=4 uid="uid://c7tuqhslqp7dn"]
+[gd_scene load_steps=13 format=4 uid="uid://c7tuqhslqp7dn"]
 
 [ext_resource type="Texture2D" uid="uid://dj74108pscj4o" path="res://art/pristine.png" id="1_2bcgo"]
 [ext_resource type="Texture2D" uid="uid://b1cqht8drevfd" path="res://art/pristine_background-export.png" id="1_bb2el"]
+[ext_resource type="Script" uid="uid://bpjpm7wxvb8wc" path="res://game/scenes/gibbon.gd" id="1_mschs"]
 [ext_resource type="Texture2D" uid="uid://cqk0y5upljlyv" path="res://art/golden_banana_animation-Sheet.png" id="3_mschs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wb37i"]
@@ -101,6 +102,7 @@ _data = {
 }
 
 [node name="Gibbon" type="Node2D"]
+script = ExtResource("1_mschs")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 texture_filter = 3
@@ -116,8 +118,8 @@ tile_set = SubResource("TileSet_mschs")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
-position = Vector2(1159, -405)
-scale = Vector2(9, 9)
+position = Vector2(1213, -288)
+scale = Vector2(8, 8)
 texture = ExtResource("3_mschs")
 hframes = 3
 

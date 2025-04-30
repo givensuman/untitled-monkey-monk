@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b8p4pspqr6qmx"]
+[gd_scene load_steps=6 format=3 uid="uid://b8p4pspqr6qmx"]
 
 [ext_resource type="Script" uid="uid://diyc51nl3yvs4" path="res://game/scripts/title_screen.gd" id="1_8h4vx"]
 [ext_resource type="Texture2D" uid="uid://bhag74s4mfbt8" path="res://art/wallpaper.jpg" id="2_7lbcs"]
 [ext_resource type="Texture2D" uid="uid://bcqyrf5j1fq3v" path="res://art/x.png" id="2_oeb76"]
+[ext_resource type="FontFile" uid="uid://cen8oa8osollv" path="res://fonts/ARCADECLASSIC.TTF" id="3_4xqfl"]
 [ext_resource type="FontFile" uid="uid://d013wow5hm4tr" path="res://fonts/Lacquer/Lacquer-Regular.ttf" id="3_7lbcs"]
 
 [node name="TitleScreen" type="Control"]
@@ -48,6 +49,7 @@ offset_right = 223.0
 offset_bottom = -324.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4xqfl")
 theme_override_font_sizes/font_size = 128
 text = "Monkey Monk"
 horizontal_alignment = 1
@@ -65,6 +67,7 @@ offset_right = 413.0
 offset_bottom = -77.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4xqfl")
 theme_override_font_sizes/font_size = 48
 text = "~ and the ~"
 horizontal_alignment = 1
@@ -76,14 +79,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -432.0
-offset_top = -172.0
-offset_right = 445.0
-offset_bottom = 3.0
+offset_left = -431.0
+offset_top = -150.0
+offset_right = 446.0
+offset_bottom = 25.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_4xqfl")
 theme_override_font_sizes/font_size = 82
-text = "Four Noble Truths"
+text = "Four  Noble  Truths"
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -95,18 +99,25 @@ offset_bottom = 932.0
 theme_override_constants/separation = 20
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
+texture_filter = 3
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4xqfl")
+theme_override_font_sizes/font_size = 34
 text = "Play"
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4xqfl")
+theme_override_font_sizes/font_size = 34
 text = "Credits"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_4xqfl")
+theme_override_font_sizes/font_size = 34
 text = "Quit"
 
 [node name="X1" type="Sprite2D" parent="."]
@@ -115,7 +126,7 @@ scale = Vector2(0.142828, 0.0292213)
 texture = ExtResource("2_oeb76")
 
 [node name="X2" type="Sprite2D" parent="."]
-position = Vector2(1192, 424)
+position = Vector2(1192, 421)
 rotation = 2.87979
 scale = Vector2(0.0779159, 0.0708246)
 texture = ExtResource("2_oeb76")

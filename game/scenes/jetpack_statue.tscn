@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://clwnqwk088w4e"]
 
-[ext_resource type="Texture2D" uid="uid://8qh0r1vecd3q" path="res://icon.svg" id="1_0hlph"]
+[ext_resource type="Texture2D" uid="uid://db2qjc6eaa2yx" path="res://art/banana_statue.png" id="1_mjw42"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4xtel"]
 size = Vector2(144, 144)
@@ -10,9 +10,9 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
 position = Vector2(0, 9.53674e-07)
-scale = Vector2(1.125, 1.125)
-texture = ExtResource("1_0hlph")
+texture = ExtResource("1_mjw42")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4xtel")

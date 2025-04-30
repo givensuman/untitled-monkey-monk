@@ -29,6 +29,7 @@ var last_checkpoint: Node = null
 var world_node
 
 func _ready():
+	print("Player starting global position:", global_position)
 	# Try to find the world node
 	world_node = get_tree().get_root().get_node("World")
 	# Add player group to both the player and its area

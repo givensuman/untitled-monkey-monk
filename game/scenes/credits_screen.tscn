@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2r6q8p1k4dlx"]
+[gd_scene load_steps=3 format=3 uid="uid://c2r6q8p1k4dlx"]
 
 [ext_resource type="Script" uid="uid://ce53y3ur18bf8" path="res://game/scripts/credits_screen.gd" id="1_ytk4x"]
+[ext_resource type="FontFile" uid="uid://cen8oa8osollv" path="res://fonts/ARCADECLASSIC.TTF" id="2_53g8l"]
 
 [node name="CreditsScreen" type="Control"]
 layout_mode = 3
@@ -33,18 +34,26 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_53g8l")
 theme_override_font_sizes/font_size = 64
 text = "Credits"
 horizontal_alignment = 1
 
 [node name="CreditsText" type="Label" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_53g8l")
+theme_override_font_sizes/font_size = 22
 text = "Created by:
 Cameron, Chris, Given, Seamus"
 horizontal_alignment = 1
 
 [node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer"]
+texture_filter = 3
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_53g8l")
+theme_override_font_sizes/font_size = 25
 text = "Back"
