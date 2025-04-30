@@ -1,29 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://bk6yboi6dhknr"]
+[gd_scene load_steps=6 format=3 uid="uid://bk6yboi6dhknr"]
 
-[ext_resource type="Texture2D" uid="uid://do4kcgtd7pk4w" path="res://art/altar_door-Sheet.png" id="1_nh42g"]
+[ext_resource type="Texture2D" uid="uid://do4kcgtd7pk4w" path="res://art/altar_door-Sheet.png" id="1_door"]
+[ext_resource type="Script" uid="uid://k7l78w7ux7f3" path="res://game/scripts/altar_door.gd" id="1_script"]
 
-[sub_resource type="Animation" id="Animation_n3o6v"]
-resource_name = "door_open"
-length = 1.2
+[sub_resource type="Animation" id="Animation_open"]
+resource_name = "Open"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_ajl4a"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_reset"]
+resource_name = "RESET"
+length = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -33,22 +35,23 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rtumx"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_door"]
 _data = {
-&"RESET": SubResource("Animation_ajl4a"),
-&"door_open": SubResource("Animation_n3o6v")
+&"Open": SubResource("Animation_open"),
+&"RESET": SubResource("Animation_reset")
 }
 
 [node name="Altar_Door" type="Node2D"]
+script = ExtResource("1_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
+position = Vector2(0, -1)
 scale = Vector2(3, 3)
-texture = ExtResource("1_nh42g")
+texture = ExtResource("1_door")
 hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../Sprite2D")
 libraries = {
-&"": SubResource("AnimationLibrary_rtumx")
+&"": SubResource("AnimationLibrary_door")
 }
